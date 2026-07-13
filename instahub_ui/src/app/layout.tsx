@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "SocialGram",
+  title: "InstaHub",
   description: "A social media platform inspired by Instagram.",
 };
 
@@ -20,7 +20,7 @@ export default function RootLayout({
       lang="en"
       className={cn("h-full", "antialiased", "font-sans", geist.variable)}
     >
-      <body className="bg-background text-foreground min-h-full font-sans">
+      <body className="text-foreground min-h-full bg-(--background-color) font-sans">
         {children}
       </body>
     </html>

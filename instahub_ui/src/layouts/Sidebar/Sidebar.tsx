@@ -45,13 +45,13 @@ export default function Sidebar() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <aside className="group/sidebar fixed top-0 left-0 z-50 flex h-screen w-18 flex-col overflow-hidden px-3 py-6 text-(--text-primary) transition-[width] duration-300 ease-in-out hover:w-64">
+    <aside className="group/sidebar fixed top-0 left-0 z-50 flex h-screen w-18 flex-col overflow-hidden px-3 py-6 text-(--text-white) transition-[width] duration-300 ease-in-out hover:w-64">
       {/* Logo */}
       <Link
         href="/"
         className="flex h-13 w-13 items-center justify-center rounded-[10px] transition-colors duration-200 hover:bg-(--hover-color)"
       >
-        <InstagramIcon size={27} />
+        <InstagramIcon size={50} />
       </Link>
 
       {/* Navigation */}
@@ -92,7 +92,7 @@ export default function Sidebar() {
                 width={27}
                 height={27}
                 className={`shrink-0 rounded-full object-cover ${
-                  isActive("/profile") ? "ring-2 ring-(--text-primary)" : ""
+                  isActive("/profile") ? "ring-2 ring-(--text-white)" : ""
                 }`}
               />
 
