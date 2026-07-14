@@ -20,7 +20,7 @@ export default function RootLayout({
       lang="en"
       className={cn("h-full", "antialiased", "font-sans", geist.variable)}
     >
-      <body className="text-foreground min-h-full bg-(--background-color) font-sans">
+      <body className="text-foreground bg-(--background-color) font-sans">
         {children}
       </body>
     </html>

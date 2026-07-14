@@ -71,3 +71,25 @@ export const InstagramColorIcon = ({ size = 24, ...props }) => (
     <circle cx="72.5" cy="35.5" r="4.5" fill="white" />
   </svg>
 );
+
+const FacebookIcon = ({ size = 24 }) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-label="Facebook"
+    >
+      <circle cx="12" cy="12" r="12" fill="#1877F2" />
+
+      <path
+        d="M13.52 20V12.7H15.97L16.34 9.85H13.52V8.03C13.52 7.2 13.75 6.64 14.94 6.64H16.46V4.09C16.2 4.05 15.3 4 14.25 4C12.06 4 10.56 5.34 10.56 7.8V9.85H8.08V12.7H10.56V20H13.52Z"
+        fill="white"
+      />
+    </svg>
+  );
+};
+
+export default FacebookIcon;
