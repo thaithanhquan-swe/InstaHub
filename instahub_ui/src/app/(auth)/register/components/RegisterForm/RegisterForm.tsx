@@ -100,7 +100,7 @@ export default function RegisterForm() {
 
         <Link
           href="/login"
-          className="block w-full rounded-3xl border border-(--primary-color) py-2.5 text-center font-medium text-(--primary-color) transition-colors hover:bg-(--border-color)"
+          className="block w-full rounded-3xl border border-(--text-primary) py-2.5 text-center font-medium text-(--text-primary) transition-colors hover:bg-(--border-color)"
         >
           I already have an account
         </Link>

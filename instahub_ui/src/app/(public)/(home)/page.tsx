@@ -1,10 +1,23 @@
+import { posts } from "@/data/post";
+import PostCard from "./components/PostCard/PostCard";
+import StoryList from "./components/StoryList/StoryList";
+import SuggestionList from "./components/SuggestionList/SuggestionList";
+
 function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2 text-(--text-white)">
-      <h1 className="text-4xl font-bold">Welcome to SocialGram!</h1>
-      <p className="mt-4 text-lg">
-        This is the home page of your SocialGram application.
-      </p>
+    <div className="grid grid-cols-12">
+      <div className="col-span-6">
+        <StoryList />
+        <div className="flex flex-col items-center gap-6">
+          {posts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
+        </div>
+      </div>
+
+      <div className="col-span-6">
+        <SuggestionList />
+      </div>
     </div>
   );
 }

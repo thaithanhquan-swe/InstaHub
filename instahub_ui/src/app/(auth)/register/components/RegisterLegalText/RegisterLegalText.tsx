@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const linkClassName =
-  "text-(--primary-color) hover:underline focus-visible:outline-none focus-visible:underline";
+  "text-(--text-primary) hover:underline focus-visible:outline-none focus-visible:underline";
 
 export default function RegisterLegalText() {
   return (

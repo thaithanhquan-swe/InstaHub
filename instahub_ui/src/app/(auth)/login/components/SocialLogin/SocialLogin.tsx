@@ -14,7 +14,7 @@ export default function SocialLogin() {
 
       <Link
         href="/register"
-        className="mt-4 block w-full rounded-3xl border border-(--primary-color) py-2.5 text-center text-(--primary-color) hover:bg-(--border-color)"
+        className="mt-4 block w-full rounded-3xl border border-(--text-primary) py-2.5 text-center text-(--text-primary) hover:bg-(--border-color)"
       >
         Create new account
       </Link>

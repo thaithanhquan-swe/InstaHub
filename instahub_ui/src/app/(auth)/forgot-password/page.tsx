@@ -24,7 +24,7 @@ export default function LoginPage() {
               Enter your mobile number, username or email.{" "}
               <Link
                 href="/login/help"
-                className="text-(--primary-color) hover:underline focus-visible:underline focus-visible:outline-none"
+                className="text-(--text-primary) hover:underline focus-visible:underline focus-visible:outline-none"
               >
                 Can&apos;t reset your password?
               </Link>

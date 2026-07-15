@@ -12,7 +12,7 @@ export default function LoginBanner() {
           See everyday moments from your
         </span>
 
-        <span className="text-primary text-[44px]">close friends.</span>
+        <span className="primary-color text-[44px]">close friends.</span>
 
         <Image
           src={images.loginPreview}

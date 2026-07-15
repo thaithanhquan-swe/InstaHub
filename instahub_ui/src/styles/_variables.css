@@ -1,5 +1,6 @@
 :root {
-  --primary-color: #0095f6;
+  --text-primary: #0095f6;
+  --text-secondary: #a8a8a8;
 
   --background-color: #000000;
   --surface-color: #121212;
@@ -18,7 +19,7 @@
   );
 }
 
-.text-primary {
+.primary-color {
   display: inline-block;
   background-image: var(--ig-gradient-close-friends);
   background-clip: text;

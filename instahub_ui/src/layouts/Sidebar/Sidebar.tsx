@@ -51,7 +51,7 @@ export default function Sidebar() {
         href="/"
         className="flex h-13 w-13 items-center justify-center rounded-[10px] transition-colors duration-200 hover:bg-(--hover-color)"
       >
-        <InstagramIcon size={50} />
+        <InstagramIcon size={24} />
       </Link>
 
       {/* Navigation */}

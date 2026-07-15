@@ -129,6 +129,25 @@ body {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+.post-media .swiper-pagination {
+  bottom: 10px;
+}
+
+.post-media .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.6);
+  opacity: 1;
+}
+
+.post-media .swiper-pagination-bullet-active {
+  background: #0095f6;
+}
+
+.post-media .swiper-button-disabled {
+  display: none;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
