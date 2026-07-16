@@ -7,8 +7,8 @@ import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 
 import StoryItem from "./components/StoryItem/StoryItem";
-import stories from "@/data/stories";
 import CarouselButton from "@/components/CarouselButton/CarouselButton";
+import stories from "@/data/stories";
 
 function StoryList() {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
@@ -34,8 +34,7 @@ function StoryList() {
           updateNavigationState(instance);
         }}
         onSlideChange={updateNavigationState}
-        onReachBeginning={updateNavigationState}
-        onReachEnd={updateNavigationState}
+        onResize={updateNavigationState}
         className="w-full cursor-pointer"
       >
         {stories.map((story) => (
@@ -49,7 +48,7 @@ function StoryList() {
         <CarouselButton
           direction="left"
           onClick={() => swiper?.slidePrev()}
-          className="-left-px"
+          className="-left-px cursor-pointer"
         />
       )}
 
@@ -57,7 +56,7 @@ function StoryList() {
         <CarouselButton
           direction="right"
           onClick={() => swiper?.slideNext()}
-          className="-right-px"
+          className="-right-px cursor-pointer"
         />
       )}
     </div>

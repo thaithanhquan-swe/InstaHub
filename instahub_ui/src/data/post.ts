@@ -19,6 +19,38 @@ export const posts: Post[] = [
     likes: "871.4K",
     comments: "8.4K",
     caption: "짧은 한 입",
+    commentList: [
+      {
+        id: 1,
+        username: "yingsupa888",
+        avatar: images.loginPreview,
+        content: "หล่อมากค่ะ 🫶🏻",
+        createdAt: "2h",
+        likes: "8",
+        replies: 4,
+      },
+      {
+        id: 2,
+        username: "nlinh.gaus_",
+        avatar: images.loginPreview,
+        content: "đẹp thế nhỉ",
+        createdAt: "2h",
+      },
+      {
+        id: 3,
+        username: "krystinenguyenn",
+        avatar: images.loginPreview,
+        content: "Ôoo đẹp trai xuất sắc cực Đăng oiii 💗",
+        createdAt: "2h",
+      },
+      {
+        id: 4,
+        username: "changne_08",
+        avatar: images.loginPreview,
+        content: "😍 😍 😍 😍",
+        createdAt: "2h",
+      },
+    ],
   },
 
   {
@@ -33,7 +65,32 @@ export const posts: Post[] = [
     likes: "12.3K",
     comments: "342",
     caption: "오늘도 무사히",
+    commentList: [
+      {
+        id: 1,
+        username: "seoul_daily",
+        avatar: images.loginPreview,
+        content: "사진 분위기 너무 좋아요",
+        createdAt: "45m",
+        likes: "12",
+      },
+      {
+        id: 2,
+        username: "minjun_studio",
+        avatar: images.loginPreview,
+        content: "멋진 하루였네요 🙌",
+        createdAt: "38m",
+      },
+      {
+        id: 3,
+        username: "travelwithme",
+        avatar: images.loginPreview,
+        content: "Where is this place?",
+        createdAt: "20m",
+      },
+    ],
   },
+
   {
     id: 3,
     author: {
@@ -46,7 +103,32 @@ export const posts: Post[] = [
     likes: "45.8K",
     comments: "1.2K",
     caption: "New drop coming soon 👀",
+    commentList: [
+      {
+        id: 1,
+        username: "streetwear.kr",
+        avatar: images.loginPreview,
+        content: "Need this right now 🔥",
+        createdAt: "1h",
+        likes: "24",
+      },
+      {
+        id: 2,
+        username: "yuna_official",
+        avatar: images.loginPreview,
+        content: "So excited 👀",
+        createdAt: "1h",
+      },
+      {
+        id: 3,
+        username: "davidkim",
+        avatar: images.loginPreview,
+        content: "When is the release date?",
+        createdAt: "55m",
+      },
+    ],
   },
+
   {
     id: 4,
     author: {
@@ -59,7 +141,25 @@ export const posts: Post[] = [
     likes: "3.7K",
     comments: "89",
     caption: "밤이 예쁘네요",
+    commentList: [
+      {
+        id: 1,
+        username: "nightwalker",
+        avatar: images.loginPreview,
+        content: "서울의 밤은 항상 예뻐요",
+        createdAt: "2h",
+      },
+      {
+        id: 2,
+        username: "moon.cafe",
+        avatar: images.loginPreview,
+        content: "분위기 최고네요 🌙",
+        createdAt: "1h",
+        likes: "6",
+      },
+    ],
   },
+
   {
     id: 5,
     author: {
@@ -72,7 +172,24 @@ export const posts: Post[] = [
     likes: "998",
     comments: "24",
     caption: "Coffee first, thoughts later ☕",
+    commentList: [
+      {
+        id: 1,
+        username: "moon.cafe",
+        avatar: images.loginPreview,
+        content: "That cup looks perfect ☕",
+        createdAt: "3h",
+      },
+      {
+        id: 2,
+        username: "quietcorner.blog",
+        avatar: images.loginPreview,
+        content: "Best way to start the morning",
+        createdAt: "2h",
+      },
+    ],
   },
+
   {
     id: 6,
     author: {
@@ -85,7 +202,33 @@ export const posts: Post[] = [
     likes: "1.2M",
     comments: "34.5K",
     caption: "고마워요 항상 💗",
+    commentList: [
+      {
+        id: 1,
+        username: "yuna_fanpage",
+        avatar: images.loginPreview,
+        content: "언제나 응원할게요 💗",
+        createdAt: "4h",
+        likes: "1.2K",
+        replies: 26,
+      },
+      {
+        id: 2,
+        username: "jiwoo.archive",
+        avatar: images.loginPreview,
+        content: "너무 예뻐요",
+        createdAt: "3h",
+      },
+      {
+        id: 3,
+        username: "love_yuna",
+        avatar: images.loginPreview,
+        content: "We love you so much!",
+        createdAt: "2h",
+      },
+    ],
   },
+
   {
     id: 7,
     author: {
@@ -103,7 +246,32 @@ export const posts: Post[] = [
     likes: "5.6K",
     comments: "212",
     caption: "21km down, legs are done",
+    commentList: [
+      {
+        id: 1,
+        username: "gymratmike",
+        avatar: images.loginPreview,
+        content: "Absolute machine 💪",
+        createdAt: "6h",
+        likes: "31",
+      },
+      {
+        id: 2,
+        username: "runwithamy",
+        avatar: images.loginPreview,
+        content: "Great pace today!",
+        createdAt: "5h",
+      },
+      {
+        id: 3,
+        username: "mountain_roads",
+        avatar: images.loginPreview,
+        content: "That route looks brutal",
+        createdAt: "4h",
+      },
+    ],
   },
+
   {
     id: 8,
     author: {
@@ -116,7 +284,25 @@ export const posts: Post[] = [
     likes: "2.1K",
     comments: "56",
     caption: "New menu is live today",
+    commentList: [
+      {
+        id: 1,
+        username: "davidkim",
+        avatar: images.loginPreview,
+        content: "I need to try this!",
+        createdAt: "7h",
+      },
+      {
+        id: 2,
+        username: "coffee.daily",
+        avatar: images.loginPreview,
+        content: "Looks delicious ☕",
+        createdAt: "6h",
+        likes: "9",
+      },
+    ],
   },
+
   {
     id: 9,
     author: {
@@ -129,7 +315,32 @@ export const posts: Post[] = [
     likes: "678.9K",
     comments: "9.8K",
     caption: "필름으로 남긴 여름",
+    commentList: [
+      {
+        id: 1,
+        username: "sohee._.log",
+        avatar: images.loginPreview,
+        content: "필름 색감 너무 예뻐",
+        createdAt: "8h",
+        likes: "204",
+      },
+      {
+        id: 2,
+        username: "summerdays",
+        avatar: images.loginPreview,
+        content: "This feels so nostalgic",
+        createdAt: "7h",
+      },
+      {
+        id: 3,
+        username: "filmgrain.kr",
+        avatar: images.loginPreview,
+        content: "어떤 필름 사용했어요?",
+        createdAt: "6h",
+      },
+    ],
   },
+
   {
     id: 10,
     author: {
@@ -142,7 +353,24 @@ export const posts: Post[] = [
     likes: "432",
     comments: "18",
     caption: "Rain smells like nostalgia",
+    commentList: [
+      {
+        id: 1,
+        username: "quietcorner.blog",
+        avatar: images.loginPreview,
+        content: "This caption feels like poetry",
+        createdAt: "9h",
+      },
+      {
+        id: 2,
+        username: "rainyday",
+        avatar: images.loginPreview,
+        content: "My favorite kind of weather",
+        createdAt: "8h",
+      },
+    ],
   },
+
   {
     id: 11,
     author: {
@@ -155,7 +383,32 @@ export const posts: Post[] = [
     likes: "8.4K",
     comments: "301",
     caption: "PR day 💪 no days off",
+    commentList: [
+      {
+        id: 1,
+        username: "trailrunner_jack",
+        avatar: images.loginPreview,
+        content: "Huge progress bro!",
+        createdAt: "10h",
+        likes: "18",
+      },
+      {
+        id: 2,
+        username: "fitlife_daily",
+        avatar: images.loginPreview,
+        content: "What was the final weight?",
+        createdAt: "9h",
+      },
+      {
+        id: 3,
+        username: "stronger.today",
+        avatar: images.loginPreview,
+        content: "Keep pushing 💪",
+        createdAt: "7h",
+      },
+    ],
   },
+
   {
     id: 12,
     author: {
@@ -168,7 +421,32 @@ export const posts: Post[] = [
     likes: "2.4M",
     comments: "78.2K",
     caption: "안녕 오랜만이야",
+    commentList: [
+      {
+        id: 1,
+        username: "jiwoo.archive",
+        avatar: images.loginPreview,
+        content: "진짜 오랜만이야 🥹",
+        createdAt: "12h",
+        likes: "3.4K",
+      },
+      {
+        id: 2,
+        username: "sohee_global",
+        avatar: images.loginPreview,
+        content: "We missed you so much!",
+        createdAt: "11h",
+      },
+      {
+        id: 3,
+        username: "yuna_official",
+        avatar: images.loginPreview,
+        content: "보고 싶었어 💗",
+        createdAt: "10h",
+      },
+    ],
   },
+
   {
     id: 13,
     author: {
@@ -181,5 +459,21 @@ export const posts: Post[] = [
     likes: "156",
     comments: "9",
     caption: "Small wins today, big plans tomorrow",
+    commentList: [
+      {
+        id: 1,
+        username: "petrichor.diaries",
+        avatar: images.loginPreview,
+        content: "Needed this reminder today",
+        createdAt: "14h",
+      },
+      {
+        id: 2,
+        username: "dailythoughts",
+        avatar: images.loginPreview,
+        content: "One step at a time",
+        createdAt: "13h",
+      },
+    ],
   },
 ];

@@ -6,9 +6,10 @@ import { Post } from "@/types/post.types";
 
 interface PostCardProps {
   post: Post;
+  onViewComments: () => void;
 }
 
-function PostActions({ post }: PostCardProps) {
+function PostActions({ post, onViewComments }: PostCardProps) {
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -37,6 +38,7 @@ function PostActions({ post }: PostCardProps) {
             <button
               type="button"
               aria-label="Comment"
+              onClick={onViewComments}
               className="cursor-pointer transition-transform duration-150 hover:scale-110 active:scale-90"
             >
               <MessageCircle size={26} />

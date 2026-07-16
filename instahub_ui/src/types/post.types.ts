@@ -1,9 +1,19 @@
-import type { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
 
 export interface PostAuthor {
   username: string;
   avatar: StaticImageData | string;
-  verified?: boolean;
+  verified: boolean;
+}
+
+export interface PostComment {
+  id: number;
+  username: string;
+  avatar: StaticImageData | string;
+  content: string;
+  createdAt: string;
+  likes?: string;
+  replies?: number;
 }
 
 export interface Post {
@@ -14,5 +24,5 @@ export interface Post {
   likes: string;
   comments: string;
   caption: string;
-  location?: string;
+  commentList: PostComment[];
 }

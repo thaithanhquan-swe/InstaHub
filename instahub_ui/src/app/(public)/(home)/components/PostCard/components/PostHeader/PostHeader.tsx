@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { BadgeCheck, Dot, MoreHorizontal } from "lucide-react";
+import { BadgeCheck, Dot } from "lucide-react";
 import { PostAuthor } from "@/types/post.types";
+import PostMenu from "./components/PostMenu/PostMenu";
 
 interface PostHeaderProps {
   author: PostAuthor;
@@ -34,13 +35,7 @@ function PostHeader({ author, createdAt }: PostHeaderProps) {
         </div>
       </div>
 
-      <button
-        type="button"
-        aria-label="More options"
-        className="cursor-pointer rounded-full p-2 transition hover:bg-(--hover-color)"
-      >
-        <MoreHorizontal size={22} />
-      </button>
+      <PostMenu />
     </header>
   );
 }

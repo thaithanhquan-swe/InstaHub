@@ -1,9 +1,10 @@
 interface PostCaptionProps {
   username: string;
   caption: string;
+  onViewComments: () => void;
 }
 
-function PostCaption({ username, caption }: PostCaptionProps) {
+function PostCaption({ username, caption, onViewComments }: PostCaptionProps) {
   return (
     <div className="px-2 pt-2 pb-4 text-sm">
       <p>
@@ -13,6 +14,7 @@ function PostCaption({ username, caption }: PostCaptionProps) {
 
       <button
         type="button"
+        onClick={onViewComments}
         className="mt-2 cursor-pointer text-(--text-secondary)"
       >
         View all comments

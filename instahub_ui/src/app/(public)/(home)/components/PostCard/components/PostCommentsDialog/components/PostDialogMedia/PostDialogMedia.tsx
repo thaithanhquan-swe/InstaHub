@@ -1,29 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import CarouselButton from "@/components/CarouselButton/CarouselButton";
+import { Post } from "@/types/post.types";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import CarouselButton from "@/components/CarouselButton/CarouselButton";
 
-interface PostMediaProps {
-  images: Array<StaticImageData | string>;
-  alt: string;
+interface PostDialogMediaProps {
+  post: Post;
 }
 
-function PostMedia({ images, alt }: PostMediaProps) {
+function PostDialogMedia({ post }: PostDialogMediaProps) {
   const [prevEl, setPrevEl] = useState<HTMLButtonElement | null>(null);
   const [nextEl, setNextEl] = useState<HTMLButtonElement | null>(null);
 
-  const hasMultipleImages = images.length > 1;
+  const hasMultipleImages = post.images.length > 1;
 
   return (
-    <div className="post-media relative aspect-square w-full overflow-hidden rounded-sm bg-black">
+    <div className="post-media relative min-h-0 min-w-0 overflow-hidden bg-black">
       <Swiper
         modules={[Navigation, Pagination]}
         slidesPerView={1}
@@ -39,22 +39,21 @@ function PostMedia({ images, alt }: PostMediaProps) {
           hasMultipleImages
             ? {
                 clickable: true,
-                dynamicBullets: true,
               }
             : false
         }
         className="h-full w-full"
       >
-        {images.map((image, index) => (
-          <SwiperSlide key={`${alt}-${index}`} className="h-full!">
+        {post.images.map((image, index) => (
+          <SwiperSlide key={`${post.id}-${index}`} className="h-full!">
             <div className="relative h-full w-full">
               <Image
                 src={image}
-                alt={`${alt} - image ${index + 1}`}
+                alt={`${post.author.username} post image ${index + 1}`}
                 fill
                 priority={index === 0}
-                sizes="(max-width: 768px) 100vw, 470px"
-                className="object-cover"
+                sizes="617px"
+                className="object-contain"
               />
             </div>
           </SwiperSlide>
@@ -72,4 +71,4 @@ function PostMedia({ images, alt }: PostMediaProps) {
   );
 }
 
-export default PostMedia;
+export default PostDialogMedia;
