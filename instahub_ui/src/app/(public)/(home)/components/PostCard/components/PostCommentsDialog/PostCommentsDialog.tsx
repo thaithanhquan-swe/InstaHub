@@ -27,18 +27,18 @@ function PostCommentsDialog({
 }: PostCommentsDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <button
-        type="button"
-        aria-label="Close"
-        onClick={() => onOpenChange(false)}
-        className="fixed top-4 right-4 z-100 flex cursor-pointer items-center justify-center text-white transition-transform duration-200 hover:scale-110 active:scale-95"
-      >
-        <X size={28} strokeWidth={1.25} />
-      </button>
       <DialogContent
         showCloseButton={false}
         className="h-[90vh] w-[calc(100vw-32px)] max-w-259.25! gap-0 overflow-hidden rounded-none border-none bg-[#24262b] p-0 text-white sm:max-w-259.25!"
       >
+        <button
+          type="button"
+          aria-label="Close"
+          onClick={() => onOpenChange(false)}
+          className="fixed top-4 right-4 z-100 flex cursor-pointer items-center justify-center text-(--text-white) transition-transform duration-200 hover:scale-110 active:scale-95"
+        >
+          <X size={28} strokeWidth={1.25} />
+        </button>
         <DialogTitle className="sr-only">
           Post by {post.author.username}
         </DialogTitle>
