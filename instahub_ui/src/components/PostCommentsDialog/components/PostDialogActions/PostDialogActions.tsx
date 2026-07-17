@@ -1,7 +1,8 @@
+import { formatCount } from "@/lib/formatCount";
 import { Bookmark, Heart, MessageCircle, Send, Smile } from "lucide-react";
 
 interface PostDialogActionsProps {
-  likes: string;
+  likes: number;
   createdAt: string;
 }
 
@@ -29,7 +30,7 @@ function PostDialogActions({ likes, createdAt }: PostDialogActionsProps) {
       </div>
 
       <div className="px-4 pt-3 pb-4">
-        <p className="text-sm font-semibold">{likes} likes</p>
+        <p className="text-sm font-semibold">{formatCount(likes)} likes</p>
 
         <p className="mt-1 text-xs text-(--text-secondary)">{createdAt}</p>
       </div>

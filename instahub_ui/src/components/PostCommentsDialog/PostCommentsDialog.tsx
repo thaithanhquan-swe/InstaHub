@@ -8,11 +8,11 @@ import {
 } from "@/components/ui/dialog";
 
 import { Post } from "@/types/post.types";
+import { X } from "lucide-react";
 import PostDialogMedia from "./components/PostDialogMedia/PostDialogMedia";
 import PostDialogHeader from "./components/PostDialogHeader/PostDialogHeader";
 import PostDialogComments from "./components/PostDialogComments/PostDialogComments";
 import PostDialogActions from "./components/PostDialogActions/PostDialogActions";
-import { X } from "lucide-react";
 
 interface PostCommentsDialogProps {
   post: Post;

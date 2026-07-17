@@ -1,7 +1,7 @@
 import { images } from "@/assets/images";
 import { Post } from "@/types/post.types";
 
-export const posts: Post[] = [
+const explorePosts: Post[] = [
   {
     id: 1,
     type: "carousel",
@@ -12,14 +12,6 @@ export const posts: Post[] = [
     },
     createdAt: "6h",
     media: [
-      {
-        type: "image",
-        url: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-      },
-      {
-        type: "video",
-        url: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-      },
       {
         type: "image",
         url: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b",
@@ -50,14 +42,6 @@ export const posts: Post[] = [
     createdAt: "2h",
     media: [
       {
-        type: "image",
-        url: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-      },
-      {
-        type: "video",
-        url: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-      },
-      {
         type: "video",
         url: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
       },
@@ -80,14 +64,6 @@ export const posts: Post[] = [
     media: [
       {
         type: "image",
-        url: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-      },
-      {
-        type: "video",
-        url: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-      },
-      {
-        type: "image",
         url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
       },
     ],
@@ -107,14 +83,6 @@ export const posts: Post[] = [
     },
     createdAt: "1d",
     media: [
-      {
-        type: "image",
-        url: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-      },
-      {
-        type: "video",
-        url: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-      },
       {
         type: "image",
         url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb",
@@ -140,14 +108,6 @@ export const posts: Post[] = [
     },
     createdAt: "9h",
     media: [
-      {
-        type: "image",
-        url: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-      },
-      {
-        type: "video",
-        url: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-      },
       {
         type: "image",
         url: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085",
@@ -273,14 +233,6 @@ export const posts: Post[] = [
         type: "image",
         url: "https://images.unsplash.com/photo-1517365830460-955ce3ccd263",
       },
-      {
-        type: "image",
-        url: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-      },
-      {
-        type: "video",
-        url: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-      },
     ],
     likes: 1300000,
     comments: 14500,
@@ -288,3 +240,5 @@ export const posts: Post[] = [
     commentList: [],
   },
 ];
+
+export default explorePosts;

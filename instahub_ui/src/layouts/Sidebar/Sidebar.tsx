@@ -23,7 +23,7 @@ const menuItems = [
   },
   {
     label: "Search",
-    href: "/search",
+    href: "/explore",
     icon: Search,
   },
   {

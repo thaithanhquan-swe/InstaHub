@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Bookmark, Heart, MessageCircle, Send } from "lucide-react";
 import { Post } from "@/types/post.types";
+import { formatCount } from "@/lib/formatCount";
 
 interface PostCardProps {
   post: Post;
@@ -14,7 +15,7 @@ function PostActions({ post, onViewComments }: PostCardProps) {
   const [saved, setSaved] = useState(false);
 
   return (
-    <div className="px-2">
+    <div className="mt-3 px-2">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
@@ -31,7 +32,7 @@ function PostActions({ post, onViewComments }: PostCardProps) {
               />
             </button>
 
-            <p className="text-sm font-semibold">{post.likes}</p>
+            <p className="text-sm font-semibold">{formatCount(post.likes)}</p>
           </div>
 
           <div className="flex items-center gap-1">
@@ -44,7 +45,9 @@ function PostActions({ post, onViewComments }: PostCardProps) {
               <MessageCircle size={26} />
             </button>
 
-            <p className="text-sm font-semibold">{post.comments}</p>
+            <p className="text-sm font-semibold">
+              {formatCount(post.comments)}
+            </p>
           </div>
 
           <button
