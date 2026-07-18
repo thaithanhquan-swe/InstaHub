@@ -3,6 +3,7 @@ import CurrentUserCard from "./components/CurrentUserCard/CurrentUserCard";
 import SuggestionItem from "./components/SuggestionItem/SuggestionItem";
 import SuggestionFooter from "./components/SuggestionFooter/SuggestionFooter";
 import { images } from "@/assets/images";
+import Link from "next/link";
 
 function SuggestionList() {
   return (
@@ -18,18 +19,18 @@ function SuggestionList() {
           Suggested for you
         </h2>
 
-        <button
-          type="button"
+        <Link
+          href={"/explore/people"}
           className="cursor-pointer text-xs font-semibold text-(--text-white) transition-colors hover:text-[#a8a8a8]"
         >
           See all
-        </button>
+        </Link>
       </div>
 
       <div className="space-y-4">
-        {suggestedUsers.map(({ id, ...user }) => (
-          <SuggestionItem key={id} {...user} />
-        ))}
+       {suggestedUsers.slice(0,5).map((user) => (
+          <SuggestionItem key={user.id} user={user}/>
+       ))}
       </div>
 
       <SuggestionFooter />

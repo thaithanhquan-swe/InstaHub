@@ -26,13 +26,6 @@ function CurrentUserCard({ username, fullName, avatar }: CurrentUserCardProps) {
           <p className="truncate text-sm text-[#a8a8a8]">{fullName}</p>
         </div>
       </div>
-
-      <button
-        type="button"
-        className="shrink-0 cursor-pointer text-xs font-semibold text-[#7595ff] transition-colors hover:text-(--text-white)"
-      >
-        Switch
-      </button>
     </div>
   );
 }

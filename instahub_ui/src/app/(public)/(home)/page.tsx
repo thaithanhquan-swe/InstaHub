@@ -1,7 +1,7 @@
-import { posts } from "@/data/post";
 import PostCard from "./components/PostCard/PostCard";
 import StoryList from "./components/StoryList/StoryList";
 import SuggestionList from "./components/SuggestionList/SuggestionList";
+import explorePosts from "@/data/explore";
 
 function HomePage() {
   return (
@@ -9,7 +9,7 @@ function HomePage() {
       <div className="col-span-6">
         <StoryList />
         <div className="flex flex-col items-center gap-6">
-          {posts.map((post) => (
+          {explorePosts.map((post) => (
             <PostCard key={post.id} post={post} />
           ))}
         </div>
