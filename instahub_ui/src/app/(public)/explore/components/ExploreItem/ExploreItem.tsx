@@ -32,7 +32,6 @@ function ExploreItem({ post }: ExploreItemProps) {
         {firstMedia.type === "video" ? (
           <video
             src={firstMedia.url as string}
-            muted
             playsInline
             preload="metadata"
             className="size-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"

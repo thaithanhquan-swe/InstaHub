@@ -148,6 +148,22 @@ body {
   display: none;
 }
 
+@keyframes story-enter {
+  from {
+    opacity: 0.35;
+    transform: scale(1.015);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-story-enter {
+  animation: story-enter 250ms ease-out;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

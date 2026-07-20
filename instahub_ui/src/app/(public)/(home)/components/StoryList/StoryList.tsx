@@ -35,11 +35,15 @@ function StoryList() {
         }}
         onSlideChange={updateNavigationState}
         onResize={updateNavigationState}
-        className="w-full cursor-pointer"
+        className="w-full"
       >
         {stories.map((story) => (
           <SwiperSlide key={story.id}>
-            <StoryItem username={story.username} avatar={story.avatar} />
+            <StoryItem
+              id={story.id}
+              username={story.username}
+              avatar={story.avatar}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
