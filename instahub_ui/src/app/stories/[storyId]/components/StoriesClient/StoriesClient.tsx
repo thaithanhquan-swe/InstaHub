@@ -20,7 +20,9 @@ interface StoriesClientProps {
 
 function StoriesClient({ storyId }: StoriesClientProps) {
   const router = useRouter();
-  const activeIndex = stories.findIndex((story) => story.id === storyId);
+  const [activeIndex, setActiveIndex] = useState(() =>
+    stories.findIndex((story) => story.id === storyId)
+  );
   const activeStory = stories[activeIndex];
 
   const [mediaIndex, setMediaIndex] = useState(0);
@@ -79,10 +81,11 @@ function StoriesClient({ storyId }: StoriesClientProps) {
         targetStory.media.length - 1
       );
 
+      setActiveIndex(index);
       resetPlayback(safeMediaIndex);
-      router.replace(`/stories/${targetStory.id}`);
+      window.history.replaceState(null, "", `/stories/${targetStory.id}`);
     },
-    [activeStory, mediaIndex, resetPlayback, router]
+    [activeStory, mediaIndex, resetPlayback]
   );
 
   const handleNext = useCallback(() => {

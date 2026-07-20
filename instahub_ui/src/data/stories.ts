@@ -56,6 +56,11 @@ const stories: Story[] = [
         type: "image",
         url: "https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?q=80&w=1200",
       },
+      {
+        id: 2,
+        type: "image",
+        url: images.loginPreview,
+      },
     ],
   },
   {
