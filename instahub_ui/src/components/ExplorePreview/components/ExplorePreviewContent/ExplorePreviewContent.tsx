@@ -1,6 +1,6 @@
-import { SuggestedUser } from "@/data/suggestion.data";
-import { Camera, Lock } from "lucide-react";
-import Image from "next/image";
+import { SuggestedUser } from '@/data/suggestion.data';
+import { Camera, Lock } from 'lucide-react';
+import Image from 'next/image';
 
 interface ExplorePreviewContentProps {
   user: SuggestedUser;
@@ -27,14 +27,10 @@ function ExplorePreviewContent({ user }: ExplorePreviewContentProps) {
 interface PreviewGridProps {
   userId: number;
   username: string;
-  images: SuggestedUser["previewImages"];
+  images: SuggestedUser['previewImages'];
 }
 
-function PreviewGrid({
-  userId,
-  username,
-  images,
-}: PreviewGridProps) {
+function PreviewGrid({ userId, username, images }: PreviewGridProps) {
   if (!images) {
     return null;
   }
@@ -88,9 +84,7 @@ function EmptyPosts({ username }: EmptyPostsProps) {
         <Camera size={30} className="text-white" />
       </div>
 
-      <h3 className="mt-2 text-sm font-semibold text-white">
-        No posts yet
-      </h3>
+      <h3 className="mt-2 text-sm font-semibold text-white">No posts yet</h3>
 
       <p className="mt-0.5 max-w-80 text-sm leading-4.5 text-neutral-300">
         When <span className="text-white">{username}</span> shares photos and

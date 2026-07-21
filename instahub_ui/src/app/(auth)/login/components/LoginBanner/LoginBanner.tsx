@@ -1,6 +1,6 @@
-import { InstagramColorIcon } from "@/assets/icon";
-import Image from "next/image";
-import { images } from "@/assets/images";
+import { InstagramColorIcon } from '@/assets/icon';
+import Image from 'next/image';
+import { images } from '@/assets/images';
 
 export default function LoginBanner() {
   return (

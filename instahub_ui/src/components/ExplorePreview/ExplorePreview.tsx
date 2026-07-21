@@ -1,9 +1,9 @@
-import { SuggestedUser } from "@/data/suggestion.data";
+import { SuggestedUser } from '@/data/suggestion.data';
 
-import ExplorePreviewHeader from "./components/ExplorePreviewHeader/ExplorePreviewHeader";
-import ExplorePreviewStats from "./components/ExplorePreviewStats/ExplorePreviewStats";
-import ExplorePreviewContent from "./components/ExplorePreviewContent/ExplorePreviewContent";
-import ExplorePreviewFollowButton from "./components/ExplorePreviewFollowButton/ExplorePreviewFollowButton";
+import ExplorePreviewHeader from './components/ExplorePreviewHeader/ExplorePreviewHeader';
+import ExplorePreviewStats from './components/ExplorePreviewStats/ExplorePreviewStats';
+import ExplorePreviewContent from './components/ExplorePreviewContent/ExplorePreviewContent';
+import ExplorePreviewFollowButton from './components/ExplorePreviewFollowButton/ExplorePreviewFollowButton';
 
 interface ExplorePreviewProps {
   user: SuggestedUser;

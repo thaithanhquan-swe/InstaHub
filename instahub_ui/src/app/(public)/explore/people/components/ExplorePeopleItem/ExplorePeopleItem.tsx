@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import ExplorePreview from "@/components/ExplorePreview/ExplorePreview";
-import { SuggestedUser } from "@/data/suggestion.data";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
+import ExplorePreview from '@/components/ExplorePreview/ExplorePreview';
+import { SuggestedUser } from '@/data/suggestion.data';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
 
 interface ExplorePeopleItemProps {
   user: SuggestedUser;
@@ -48,7 +48,7 @@ function ExplorePeopleItem({ user }: ExplorePeopleItemProps) {
           <p className="truncate text-xs text-(--text-secondary)">
             {user.followedBy?.usernames
               ? `Followed by ${user.followedBy.usernames}`
-              : "Suggested for you"}
+              : 'Suggested for you'}
           </p>
         </div>
 
@@ -64,11 +64,11 @@ function ExplorePeopleItem({ user }: ExplorePeopleItemProps) {
         onClick={handleToggleFollow}
         className={`ml-5 min-w-20 cursor-pointer rounded-lg px-4 py-2 text-sm font-semibold transition-colors ${
           isFollowing
-            ? "bg-transparent text-(--text-white) hover:bg-(--hover-color)"
-            : "bg-[#4f5df5] text-white hover:bg-[#4050ed]"
+            ? 'bg-transparent text-(--text-white) hover:bg-(--hover-color)'
+            : 'bg-[#4f5df5] text-white hover:bg-[#4050ed]'
         }`}
       >
-        {isFollowing ? "Following" : "Follow"}
+        {isFollowing ? 'Following' : 'Follow'}
       </button>
     </div>
   );

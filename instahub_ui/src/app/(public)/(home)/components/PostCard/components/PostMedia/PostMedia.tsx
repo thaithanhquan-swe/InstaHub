@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Image from "next/image";
-import { Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useState } from 'react';
+import Image from 'next/image';
+import { Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import CarouselButton from "@/components/CarouselButton/CarouselButton";
-import { PostMedia as PostMediaItem } from "@/types/post.types";
+import CarouselButton from '@/components/CarouselButton/CarouselButton';
+import { PostMedia as PostMediaItem } from '@/types/post.types';
 
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 interface PostMediaProps {
   media: PostMediaItem[];
@@ -53,7 +53,7 @@ function PostMedia({ media, alt }: PostMediaProps) {
         {media.map((item, index) => (
           <SwiperSlide key={`${alt}-${index}`} className="h-full!">
             <div className="relative h-full w-full bg-black">
-              {item.type === "video" ? (
+              {item.type === 'video' ? (
                 <video
                   src={item.url as string}
                   controls

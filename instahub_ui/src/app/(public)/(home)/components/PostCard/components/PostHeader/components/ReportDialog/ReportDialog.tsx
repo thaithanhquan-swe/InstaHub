@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Check, ChevronRight, X } from "lucide-react";
+import { useState } from 'react';
+import { Check, ChevronRight, X } from 'lucide-react';
 
 import {
   Dialog,
@@ -9,9 +9,9 @@ import {
   DialogContent,
   DialogDescription,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 
-import { REPORT_REASONS } from "../../constants";
+import { REPORT_REASONS } from '../../constants';
 
 interface ReportDialogProps {
   open: boolean;
@@ -22,7 +22,7 @@ interface ReportDialogProps {
 export default function ReportDialog({
   open,
   onOpenChange,
-  username = "thv",
+  username = 'thv',
 }: ReportDialogProps) {
   const [submitted, setSubmitted] = useState(false);
   const [selectedReason, setSelectedReason] = useState<string | null>(null);
@@ -40,7 +40,7 @@ export default function ReportDialog({
     setSelectedReason(reason);
     setSubmitted(true);
 
-    console.log("Report reason:", reason);
+    console.log('Report reason:', reason);
   };
 
   const handleClose = () => {
@@ -104,7 +104,7 @@ export default function ReportDialog({
 
               <p className="mt-2 max-w-132.5 text-sm leading-5 text-neutral-300">
                 When you see something you don&apos;t like on InstaHub, you can
-                report it if it doesn&apos;t follow our{" "}
+                report it if it doesn&apos;t follow our{' '}
                 <button
                   type="button"
                   className="cursor-pointer text-[#4f67ff] hover:underline"

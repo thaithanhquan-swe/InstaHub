@@ -1,7 +1,7 @@
-import Image from "next/image";
+import Image from 'next/image';
 
-import { Post } from "@/types/post.types";
-import CommentItem from "../CommentItem/CommentItem";
+import { Post } from '@/types/post.types';
+import CommentItem from '../CommentItem/CommentItem';
 
 interface PostDialogCommentsProps {
   post: Post;

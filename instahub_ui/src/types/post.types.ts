@@ -1,7 +1,7 @@
-import { StaticImageData } from "next/image";
+import { StaticImageData } from 'next/image';
 
-export type PostType = "image" | "carousel" | "reel";
-export type PostMediaType = "image" | "video";
+export type PostType = 'image' | 'carousel' | 'reel';
+export type PostMediaType = 'image' | 'video';
 
 export interface PostMedia {
   type: PostMediaType;

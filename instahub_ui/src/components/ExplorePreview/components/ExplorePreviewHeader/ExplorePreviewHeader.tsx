@@ -1,6 +1,6 @@
-import { SuggestedUser } from "@/data/suggestion.data";
-import Image from "next/image";
-import Link from "next/link";
+import { SuggestedUser } from '@/data/suggestion.data';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface ExplorePreviewHeaderProps {
   user: SuggestedUser;
@@ -27,9 +27,7 @@ function ExplorePreviewHeader({ user }: ExplorePreviewHeaderProps) {
           {user.nickname}
         </Link>
 
-        <p className="truncate text-sm text-neutral-300">
-          {user.username}
-        </p>
+        <p className="truncate text-sm text-neutral-300">{user.username}</p>
       </div>
     </div>
   );

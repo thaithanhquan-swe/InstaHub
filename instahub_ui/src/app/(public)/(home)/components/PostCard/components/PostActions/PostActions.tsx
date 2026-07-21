@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Bookmark, Heart, MessageCircle, Send } from "lucide-react";
-import { Post } from "@/types/post.types";
-import { formatCount } from "@/lib/formatCount";
+import { useState } from 'react';
+import { Bookmark, Heart, MessageCircle, Send } from 'lucide-react';
+import { Post } from '@/types/post.types';
+import { formatCount } from '@/lib/formatCount';
 
 interface PostCardProps {
   post: Post;
@@ -21,14 +21,14 @@ function PostActions({ post, onViewComments }: PostCardProps) {
           <div className="flex items-center gap-1">
             <button
               type="button"
-              aria-label={liked ? "Unlike post" : "Like post"}
+              aria-label={liked ? 'Unlike post' : 'Like post'}
               onClick={() => setLiked((value) => !value)}
               className="cursor-pointer transition-transform duration-150 hover:scale-110 active:scale-90"
             >
               <Heart
                 size={26}
-                fill={liked ? "currentColor" : "none"}
-                className={liked ? "text-red-500" : ""}
+                fill={liked ? 'currentColor' : 'none'}
+                className={liked ? 'text-red-500' : ''}
               />
             </button>
 
@@ -61,11 +61,11 @@ function PostActions({ post, onViewComments }: PostCardProps) {
 
         <button
           type="button"
-          aria-label={saved ? "Remove from saved" : "Save post"}
+          aria-label={saved ? 'Remove from saved' : 'Save post'}
           onClick={() => setSaved((value) => !value)}
           className="cursor-pointer transition-transform duration-150 hover:scale-110 active:scale-90"
         >
-          <Bookmark size={26} fill={saved ? "currentColor" : "none"} />
+          <Bookmark size={26} fill={saved ? 'currentColor' : 'none'} />
         </button>
       </div>
     </div>

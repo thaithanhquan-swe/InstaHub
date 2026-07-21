@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Input from "@/components/ui/input";
-import BirthdaySelect from "../BirthdaySelect/BirthdaySelect";
-import RegisterLegalText from "../RegisterLegalText/RegisterLegalText";
+import Link from 'next/link';
+import Input from '@/components/ui/input';
+import BirthdaySelect from '../BirthdaySelect/BirthdaySelect';
+import RegisterLegalText from '../RegisterLegalText/RegisterLegalText';
 
 export default function RegisterForm() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -12,12 +12,12 @@ export default function RegisterForm() {
     const formData = new FormData(event.currentTarget);
 
     const payload = {
-      contact: formData.get("contact"),
-      password: formData.get("password"),
-      username: formData.get("username"),
-      birthMonth: formData.get("birthMonth"),
-      birthDay: formData.get("birthDay"),
-      birthYear: formData.get("birthYear"),
+      contact: formData.get('contact'),
+      password: formData.get('password'),
+      username: formData.get('username'),
+      birthMonth: formData.get('birthMonth'),
+      birthDay: formData.get('birthDay'),
+      birthYear: formData.get('birthYear'),
     };
 
     console.log(payload);

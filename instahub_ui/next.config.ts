@@ -1,23 +1,23 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "encrypted-tbn0.gstatic.com",
+        protocol: 'https',
+        hostname: 'encrypted-tbn0.gstatic.com',
       },
       {
-        protocol: "https",
-        hostname: "static.cdninstagram.com",
+        protocol: 'https',
+        hostname: 'static.cdninstagram.com',
       },
       {
-        protocol: "https",
-        hostname: "images.unsplash.com",
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
       },
       {
-        protocol: "https",
-        hostname: "i.pravatar.cc",
+        protocol: 'https',
+        hostname: 'i.pravatar.cc',
       },
     ],
   },

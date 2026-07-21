@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { MoreHorizontal } from "lucide-react";
+import { useState } from 'react';
+import { MoreHorizontal } from 'lucide-react';
 
-import { images } from "@/assets/images";
+import { images } from '@/assets/images';
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { dropdownDangerItemClass, dropdownItemClass } from "../../constants";
-import ReportDialog from "../ReportDialog/ReportDialog";
-import AboutAccountDialog from "../AboutAccountDialog/AboutAccountDialog";
+} from '@/components/ui/dropdown-menu';
+import { dropdownDangerItemClass, dropdownItemClass } from '../../constants';
+import ReportDialog from '../ReportDialog/ReportDialog';
+import AboutAccountDialog from '../AboutAccountDialog/AboutAccountDialog';
 
 export default function PostMenu() {
   const [reportOpen, setReportOpen] = useState(false);

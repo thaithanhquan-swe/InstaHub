@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { BadgeCheck, Dot } from "lucide-react";
-import { PostAuthor } from "@/types/post.types";
-import PostMenu from "./components/PostMenu/PostMenu";
+import Image from 'next/image';
+import { BadgeCheck, Dot } from 'lucide-react';
+import { PostAuthor } from '@/types/post.types';
+import PostMenu from './components/PostMenu/PostMenu';
 
 interface PostHeaderProps {
   author: PostAuthor;

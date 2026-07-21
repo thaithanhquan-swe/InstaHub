@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { BadgeCheck } from "lucide-react";
+import Image from 'next/image';
+import { BadgeCheck } from 'lucide-react';
 
-import { PostAuthor } from "@/types/post.types";
+import { PostAuthor } from '@/types/post.types';
 
 interface PostDialogHeaderProps {
   author: PostAuthor;

@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Image from "next/image";
-import { Heart, Images, MessageCircle, Play } from "lucide-react";
+import { useState } from 'react';
+import Image from 'next/image';
+import { Heart, Images, MessageCircle, Play } from 'lucide-react';
 
-import { formatCount } from "@/lib/formatCount";
-import { Post } from "@/types/post.types";
-import PostCommentsDialog from "@/components/PostCommentsDialog/PostCommentsDialog";
+import { formatCount } from '@/lib/formatCount';
+import { Post } from '@/types/post.types';
+import PostCommentsDialog from '@/components/PostCommentsDialog/PostCommentsDialog';
 
 interface ExploreItemProps {
   post: Post;
@@ -29,7 +29,7 @@ function ExploreItem({ post }: ExploreItemProps) {
         aria-label={`Open post by ${post.author.username}`}
         className="group relative aspect-square cursor-pointer overflow-hidden bg-[#1a1a1a]"
       >
-        {firstMedia.type === "video" ? (
+        {firstMedia.type === 'video' ? (
           <video
             src={firstMedia.url as string}
             playsInline
@@ -48,9 +48,9 @@ function ExploreItem({ post }: ExploreItemProps) {
 
         <div className="absolute inset-0 bg-black/0 transition-colors duration-200 group-hover:bg-black/40" />
 
-        {post.type && post.type !== "image" && (
+        {post.type && post.type !== 'image' && (
           <div className="absolute top-3 right-3 z-10 text-white drop-shadow-md">
-            {post.type === "reel" ? (
+            {post.type === 'reel' ? (
               <Play size={21} fill="white" strokeWidth={0} />
             ) : (
               <Images size={21} strokeWidth={2} />

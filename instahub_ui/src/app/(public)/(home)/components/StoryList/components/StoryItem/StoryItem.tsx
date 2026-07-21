@@ -1,5 +1,5 @@
-import Image, { type StaticImageData } from "next/image";
-import Link from "next/link";
+import Image, { type StaticImageData } from 'next/image';
+import Link from 'next/link';
 
 interface StoryItemProps {
   id: number;

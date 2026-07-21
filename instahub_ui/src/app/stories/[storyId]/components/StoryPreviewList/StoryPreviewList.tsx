@@ -1,7 +1,7 @@
-import Image from "next/image";
+import Image from 'next/image';
 
-import type { Story } from "@/data/stories";
-import { cn } from "@/lib/utils";
+import type { Story } from '@/data/stories';
+import { cn } from '@/lib/utils';
 
 interface PreviewStory {
   story: Story;
@@ -10,7 +10,7 @@ interface PreviewStory {
 
 interface StoryPreviewListProps {
   stories: PreviewStory[];
-  side: "left" | "right";
+  side: 'left' | 'right';
   onSelectStory: (index: number) => void;
 }
 
@@ -19,14 +19,13 @@ function StoryPreviewList({
   side,
   onSelectStory,
 }: StoryPreviewListProps) {
-  const displayStories =
-    side === "left" ? [...stories] : stories;
+  const displayStories = side === 'left' ? [...stories] : stories;
 
   return (
     <div
       className={cn(
-        "hidden items-center gap-12 2xl:flex",
-        side === "left" ? "justify-end" : "justify-start",
+        'hidden items-center gap-12 2xl:flex',
+        side === 'left' ? 'justify-end' : 'justify-start',
       )}
     >
       {displayStories.map(({ story, index }, previewIndex) => {
@@ -35,7 +34,7 @@ function StoryPreviewList({
         if (!previewMedia) return null;
 
         const isClosestToActive =
-          side === "left"
+          side === 'left'
             ? previewIndex === displayStories.length - 1
             : previewIndex === 0;
 
@@ -45,13 +44,13 @@ function StoryPreviewList({
             type="button"
             onClick={() => onSelectStory(index)}
             className={cn(
-              "group relative shrink-0 cursor-pointer overflow-hidden rounded-lg bg-neutral-800 transition-all duration-300 hover:scale-[1.02]",
+              'group relative shrink-0 cursor-pointer overflow-hidden rounded-lg bg-neutral-800 transition-all duration-300 hover:scale-[1.02]',
               isClosestToActive
-                ? "h-72 w-40 opacity-75"
-                : "h-64 w-36 opacity-55",
+                ? 'h-72 w-40 opacity-75'
+                : 'h-64 w-36 opacity-55',
             )}
           >
-            {previewMedia.type === "image" ? (
+            {previewMedia.type === 'image' ? (
               <Image
                 src={previewMedia.url}
                 alt={`${story.username}'s story preview`}
@@ -62,7 +61,7 @@ function StoryPreviewList({
             ) : (
               <video
                 src={
-                  typeof previewMedia.url === "string"
+                  typeof previewMedia.url === 'string'
                     ? previewMedia.url
                     : previewMedia.url.src
                 }
@@ -94,9 +93,7 @@ function StoryPreviewList({
                 {story.username}
               </span>
 
-              <span className="text-sm text-white/80">
-                {story.time}
-              </span>
+              <span className="text-sm text-white/80">{story.time}</span>
             </div>
           </button>
         );

@@ -1,14 +1,14 @@
 const footerLinks = [
-  "About",
-  "Help",
-  "Press",
-  "API",
-  "Jobs",
-  "Privacy",
-  "Terms",
-  "Locations",
-  "Language",
-  "Meta Verified",
+  'About',
+  'Help',
+  'Press',
+  'API',
+  'Jobs',
+  'Privacy',
+  'Terms',
+  'Locations',
+  'Language',
+  'Meta Verified',
 ];
 
 function SuggestionFooter() {

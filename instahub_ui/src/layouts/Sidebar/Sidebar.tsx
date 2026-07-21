@@ -1,39 +1,39 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import { Heart, House, Plus, Search, Send, SquarePlay } from "lucide-react";
-import { InstagramIcon } from "@/assets/icon";
-import { usePathname } from "next/navigation";
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Heart, House, Plus, Search, Send, SquarePlay } from 'lucide-react';
+import { InstagramIcon } from '@/assets/icon';
+import { usePathname } from 'next/navigation';
 
 const menuItems = [
   {
-    label: "Home",
-    href: "/",
+    label: 'Home',
+    href: '/',
     icon: House,
   },
   {
-    label: "Reels",
-    href: "/reels",
+    label: 'Reels',
+    href: '/reels',
     icon: SquarePlay,
   },
   {
-    label: "Messages",
-    href: "/messages",
+    label: 'Messages',
+    href: '/messages',
     icon: Send,
   },
   {
-    label: "Search",
-    href: "/explore",
+    label: 'Search',
+    href: '/explore',
     icon: Search,
   },
   {
-    label: "Notifications",
-    href: "/notifications",
+    label: 'Notifications',
+    href: '/notifications',
     icon: Heart,
   },
   {
-    label: "Create",
-    href: "/create",
+    label: 'Create',
+    href: '/create',
     icon: Plus,
   },
 ];
@@ -42,7 +42,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+    href === '/' ? pathname === '/' : pathname.startsWith(href);
 
   return (
     <aside className="group/sidebar fixed top-0 left-0 z-50 flex h-screen w-18 flex-col overflow-hidden px-3 py-6 text-(--text-white) transition-[width] duration-300 ease-in-out hover:w-64">
@@ -65,7 +65,7 @@ export default function Sidebar() {
                 <Link
                   href={href}
                   className={`flex h-13 w-full items-center gap-4 rounded-[10px] px-3 transition-colors duration-200 hover:bg-(--hover-color) ${
-                    active ? "bg-(--hover-color)" : ""
+                    active ? 'bg-(--hover-color)' : ''
                   }`}
                 >
                   <Icon size={27} className="shrink-0" />
@@ -83,7 +83,7 @@ export default function Sidebar() {
             <Link
               href="/profile"
               className={`flex h-13 w-full items-center gap-4 rounded-[10px] px-3 transition-colors duration-200 hover:bg-(--hover-color) ${
-                isActive("/profile") ? "bg-(--hover-color)" : ""
+                isActive('/profile') ? 'bg-(--hover-color)' : ''
               }`}
             >
               <Image
@@ -92,7 +92,7 @@ export default function Sidebar() {
                 width={27}
                 height={27}
                 className={`shrink-0 rounded-full object-cover ${
-                  isActive("/profile") ? "ring-2 ring-(--text-white)" : ""
+                  isActive('/profile') ? 'ring-2 ring-(--text-white)' : ''
                 }`}
               />
 

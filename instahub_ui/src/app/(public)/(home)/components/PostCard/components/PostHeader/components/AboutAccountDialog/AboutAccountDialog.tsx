@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import Image, { type StaticImageData } from "next/image";
+import Image, { type StaticImageData } from 'next/image';
 import {
   BadgeCheck,
   CalendarDays,
   ChevronRight,
   MapPin,
   Users,
-} from "lucide-react";
+} from 'lucide-react';
 
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 
 interface AboutAccountDialogProps {
   open: boolean;
@@ -32,10 +32,10 @@ export default function AboutAccountDialog({
   onOpenChange,
   username,
   avatar,
-  dateJoined = "December 2021",
-  location = "South Korea",
+  dateJoined = 'December 2021',
+  location = 'South Korea',
   sharedFollowers = 6,
-  verifiedDate = "December 2021",
+  verifiedDate = 'December 2021',
 }: AboutAccountDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -71,7 +71,7 @@ export default function AboutAccountDialog({
 
             <p className="mt-2 max-w-117.5 text-[12px] leading-5 text-neutral-400">
               To help keep our community authentic, we&apos;re showing
-              information about profiles on InstaHub.{" "}
+              information about profiles on InstaHub.{' '}
               <button
                 type="button"
                 className="font-semibold text-neutral-200 hover:underline"
@@ -128,7 +128,7 @@ export default function AboutAccountDialog({
             <p>
               With a Meta Verified subscription, you get a verified badge,
               proactive account protection, access to direct account support and
-              more.{" "}
+              more.{' '}
               <button
                 type="button"
                 className="font-semibold text-neutral-200 hover:underline"

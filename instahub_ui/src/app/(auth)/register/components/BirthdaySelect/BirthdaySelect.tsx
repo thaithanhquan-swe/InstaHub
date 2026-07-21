@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useMemo, useState } from "react";
-import { CircleQuestionMark } from "lucide-react";
+import { useMemo, useState } from 'react';
+import { CircleQuestionMark } from 'lucide-react';
 
 import {
   Select,
@@ -9,21 +9,21 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 
 const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 function getDaysInMonth(month: string, year: string) {
@@ -32,46 +32,46 @@ function getDaysInMonth(month: string, year: string) {
 }
 
 export default function BirthdaySelect() {
-  const [month, setMonth] = useState("");
-  const [day, setDay] = useState("");
-  const [year, setYear] = useState("");
+  const [month, setMonth] = useState('');
+  const [day, setDay] = useState('');
+  const [year, setYear] = useState('');
 
   const currentYear = new Date().getFullYear();
 
   const years = useMemo(
     () => Array.from({ length: 100 }, (_, index) => currentYear - index),
-    [currentYear]
+    [currentYear],
   );
 
   const daysInMonth = useMemo(() => getDaysInMonth(month, year), [month, year]);
 
   const days = useMemo(
     () => Array.from({ length: daysInMonth }, (_, index) => index + 1),
-    [daysInMonth]
+    [daysInMonth],
   );
 
   const handleMonthChange = (value: string | null) => {
-    const nextMonth = value ?? "";
+    const nextMonth = value ?? '';
     setMonth(nextMonth);
 
     const nextDaysInMonth = getDaysInMonth(nextMonth, year);
     if (day && Number(day) > nextDaysInMonth) {
-      setDay("");
+      setDay('');
     }
   };
 
   const handleYearChange = (value: string | null) => {
-    const nextYear = value ?? "";
+    const nextYear = value ?? '';
     setYear(nextYear);
 
     const nextDaysInMonth = getDaysInMonth(month, nextYear);
     if (day && Number(day) > nextDaysInMonth) {
-      setDay("");
+      setDay('');
     }
   };
 
   const handleDayChange = (value: string | null) => {
-    setDay(value ?? "");
+    setDay(value ?? '');
   };
 
   return (

@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-import PostHeader from "./components/PostHeader/PostHeader";
-import PostMedia from "./components/PostMedia/PostMedia";
-import PostActions from "./components/PostActions/PostActions";
-import PostCaption from "./components/PostCaption/PostCaption";
+import PostHeader from './components/PostHeader/PostHeader';
+import PostMedia from './components/PostMedia/PostMedia';
+import PostActions from './components/PostActions/PostActions';
+import PostCaption from './components/PostCaption/PostCaption';
 
-import { Post } from "@/types/post.types";
-import PostCommentsDialog from "@/components/PostCommentsDialog/PostCommentsDialog";
+import { Post } from '@/types/post.types';
+import PostCommentsDialog from '@/components/PostCommentsDialog/PostCommentsDialog';
 
 interface PostCardProps {
   post: Post;

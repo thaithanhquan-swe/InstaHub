@@ -1,12 +1,12 @@
-import { SuggestedUser } from "@/data/suggestion.data";
+import { SuggestedUser } from '@/data/suggestion.data';
 
 interface ExplorePreviewStatsProps {
-  stats: SuggestedUser["stats"];
+  stats: SuggestedUser['stats'];
 }
 
 function formatCount(count: number) {
-  return new Intl.NumberFormat("en", {
-    notation: "compact",
+  return new Intl.NumberFormat('en', {
+    notation: 'compact',
     maximumFractionDigits: 1,
   }).format(count);
 }
@@ -14,15 +14,15 @@ function formatCount(count: number) {
 function ExplorePreviewStats({ stats }: ExplorePreviewStatsProps) {
   const items = [
     {
-      label: "posts",
+      label: 'posts',
       value: stats.posts,
     },
     {
-      label: "followers",
+      label: 'followers',
       value: stats.followers,
     },
     {
-      label: "following",
+      label: 'following',
       value: stats.following,
     },
   ];

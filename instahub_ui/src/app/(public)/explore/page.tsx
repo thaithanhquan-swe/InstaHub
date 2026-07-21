@@ -1,5 +1,5 @@
-import ExploreGrid from "./components/ExploreGrid/ExploreGrid";
-import ExploreSearch from "./components/ExploreSearch/ExploreSearch";
+import ExploreGrid from './components/ExploreGrid/ExploreGrid';
+import ExploreSearch from './components/ExploreSearch/ExploreSearch';
 
 function ExplorePage() {
   return (

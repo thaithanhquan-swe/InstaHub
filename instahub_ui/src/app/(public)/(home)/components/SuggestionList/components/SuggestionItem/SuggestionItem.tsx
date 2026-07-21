@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { BadgeCheck } from "lucide-react";
-import Image from "next/image";
+import { useState } from 'react';
+import { BadgeCheck } from 'lucide-react';
+import Image from 'next/image';
 
-import { SuggestedUser } from "@/data/suggestion.data";
-import ExplorePreview from "@/components/ExplorePreview/ExplorePreview";
+import { SuggestedUser } from '@/data/suggestion.data';
+import ExplorePreview from '@/components/ExplorePreview/ExplorePreview';
 
 function FollowedBy({
   usernames,
   avatars,
-}: NonNullable<SuggestedUser["followedBy"]>) {
+}: NonNullable<SuggestedUser['followedBy']>) {
   return (
     <div className="flex min-w-0 items-center gap-1">
       <div className="flex shrink-0 items-center">
@@ -22,16 +22,14 @@ function FollowedBy({
             width={14}
             height={14}
             className={[
-              "size-3.5 rounded-full border border-[#0c1014] object-cover",
-              index > 0 ? "-ml-1" : "",
-            ].join(" ")}
+              'size-3.5 rounded-full border border-[#0c1014] object-cover',
+              index > 0 ? '-ml-1' : '',
+            ].join(' ')}
           />
         ))}
       </div>
 
-      <p className="truncate text-xs text-[#a8a8a8]">
-        Followed by {usernames}
-      </p>
+      <p className="truncate text-xs text-[#a8a8a8]">Followed by {usernames}</p>
     </div>
   );
 }
@@ -89,7 +87,7 @@ function SuggestionItem({ user }: SuggestionItemProps) {
           onClick={handleToggleFollow}
           className="shrink-0 cursor-pointer text-xs font-semibold text-[#7595ff] transition-colors hover:text-[#8b9ede]"
         >
-          {isFollowing ? "Following" : "Follow"}
+          {isFollowing ? 'Following' : 'Follow'}
         </button>
       </div>
 

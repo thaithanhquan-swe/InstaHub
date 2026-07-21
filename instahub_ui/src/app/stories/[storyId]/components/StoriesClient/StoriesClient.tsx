@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import CarouselButton from "@/components/CarouselButton/CarouselButton";
-import stories from "@/data/stories";
-import { X } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import CarouselButton from '@/components/CarouselButton/CarouselButton';
+import stories from '@/data/stories';
+import { X } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-import StoryPreviewList from "../StoryPreviewList/StoryPreviewList";
-import StoryViewer from "../StoryViewer/StoryViewer";
+import StoryPreviewList from '../StoryPreviewList/StoryPreviewList';
+import StoryViewer from '../StoryViewer/StoryViewer';
 
 const DEFAULT_STORY_DURATION = 6000;
 const TIMER_INTERVAL = 50;
@@ -21,7 +21,7 @@ interface StoriesClientProps {
 function StoriesClient({ storyId }: StoriesClientProps) {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(() =>
-    stories.findIndex((story) => story.id === storyId)
+    stories.findIndex((story) => story.id === storyId),
   );
   const activeStory = stories[activeIndex];
 
@@ -38,9 +38,9 @@ function StoriesClient({ storyId }: StoriesClientProps) {
   const isFirstMedia = mediaIndex === 0;
   const isLastMedia = mediaIndex >= (activeStory?.media.length ?? 1) - 1;
   const currentMediaKey =
-    activeStory && currentMedia ? `${activeStory.id}-${currentMedia.id}` : "";
+    activeStory && currentMedia ? `${activeStory.id}-${currentMedia.id}` : '';
   const isLiked =
-    currentMediaKey !== "" && likedMediaKeys.includes(currentMediaKey);
+    currentMediaKey !== '' && likedMediaKeys.includes(currentMediaKey);
 
   const resetPlayback = useCallback((nextMediaIndex: number) => {
     setMediaIndex(nextMediaIndex);
@@ -57,7 +57,7 @@ function StoriesClient({ storyId }: StoriesClientProps) {
       lastViewedMediaByStory.current[activeStory.id] = nextMediaIndex;
       resetPlayback(nextMediaIndex);
     },
-    [activeStory, resetPlayback]
+    [activeStory, resetPlayback],
   );
 
   const goToStory = useCallback(
@@ -78,14 +78,14 @@ function StoriesClient({ storyId }: StoriesClientProps) {
 
       const safeMediaIndex = Math.min(
         Math.max(requestedMediaIndex, 0),
-        targetStory.media.length - 1
+        targetStory.media.length - 1,
       );
 
       setActiveIndex(index);
       resetPlayback(safeMediaIndex);
-      window.history.replaceState(null, "", `/stories/${targetStory.id}`);
+      window.history.replaceState(null, '', `/stories/${targetStory.id}`);
     },
-    [activeStory, mediaIndex, resetPlayback]
+    [activeStory, mediaIndex, resetPlayback],
   );
 
   const handleNext = useCallback(() => {
@@ -97,7 +97,7 @@ function StoriesClient({ storyId }: StoriesClientProps) {
     }
 
     if (isLastStory) {
-      router.push("/");
+      router.push('/');
       return;
     }
 
@@ -159,12 +159,12 @@ function StoriesClient({ storyId }: StoriesClientProps) {
 
       goToStory(index, targetMediaIndex);
     },
-    [goToStory]
+    [goToStory],
   );
 
   const handleSelectNextStory = useCallback(
     (index: number) => goToStory(index, 0),
-    [goToStory]
+    [goToStory],
   );
 
   const handleToggleLike = () => {
@@ -173,7 +173,7 @@ function StoriesClient({ storyId }: StoriesClientProps) {
     setLikedMediaKeys((currentKeys) =>
       currentKeys.includes(currentMediaKey)
         ? currentKeys.filter((key) => key !== currentMediaKey)
-        : [...currentKeys, currentMediaKey]
+        : [...currentKeys, currentMediaKey],
     );
   };
 

@@ -1,5 +1,5 @@
-import FacebookIcon from "@/assets/icon";
-import Link from "next/link";
+import FacebookIcon from '@/assets/icon';
+import Link from 'next/link';
 
 export default function SocialLogin() {
   return (

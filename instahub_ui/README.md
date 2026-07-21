@@ -41,6 +41,7 @@ A modern Instagram-like social media platform built with **Next.js 16**, **React
 ## 🛠 Tech Stack
 
 **Frontend:**
+
 - Next.js 16 (App Router)
 - React 19
 - TypeScript
@@ -48,6 +49,7 @@ A modern Instagram-like social media platform built with **Next.js 16**, **React
 - Shadcn UI Components
 
 **Libraries:**
+
 - Swiper - Carousel/slider functionality
 - Emoji Picker React - Emoji selection
 - Lucide React - Beautiful icons
@@ -55,6 +57,7 @@ A modern Instagram-like social media platform built with **Next.js 16**, **React
 - clsx & tailwind-merge - CSS utilities
 
 **Development:**
+
 - ESLint - Code linting
 - PostCSS - CSS processing
 
@@ -189,6 +192,7 @@ instahub_ui/
 ### UI Components
 
 Base components built with shadcn/ui:
+
 - Button
 - Dialog / Modal
 - Dropdown Menu
@@ -199,22 +203,26 @@ Base components built with shadcn/ui:
 ## 🎯 Key Features Implementation
 
 ### Authentication Flow
+
 - Located in `src/app/(auth)/`
 - Supports login, registration, and password reset
 - Social login integration ready
 
 ### Home Feed
+
 - Infinite scrolling posts
 - Story carousel with swiper
 - Real-time-like interactions
 - User suggestions sidebar
 
 ### Post Comments
+
 - Shared modal dialog component
 - Comment threading support
 - Rich text input with emoji picker
 
 ### Dark Mode
+
 - Theme toggle in sidebar
 - Persistent theme storage with `next-themes`
 - Tailwind CSS dark mode utilities
@@ -222,12 +230,15 @@ Base components built with shadcn/ui:
 ## 🔧 Configuration Files
 
 ### Tailwind CSS (`tailwind.config.ts`)
+
 Configured with custom components, animations, and extends for responsive design.
 
 ### Next.js (`next.config.ts`)
+
 Optimized for image handling, routing, and performance.
 
 ### TypeScript (`tsconfig.json`)
+
 Strict mode enabled for type safety.
 
 ## 📦 Environment Setup

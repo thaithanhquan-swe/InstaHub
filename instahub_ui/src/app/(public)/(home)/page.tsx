@@ -1,7 +1,7 @@
-import PostCard from "./components/PostCard/PostCard";
-import StoryList from "./components/StoryList/StoryList";
-import SuggestionList from "./components/SuggestionList/SuggestionList";
-import explorePosts from "@/data/explore";
+import PostCard from './components/PostCard/PostCard';
+import StoryList from './components/StoryList/StoryList';
+import SuggestionList from './components/SuggestionList/SuggestionList';
+import explorePosts from '@/data/explore';
 
 function HomePage() {
   return (

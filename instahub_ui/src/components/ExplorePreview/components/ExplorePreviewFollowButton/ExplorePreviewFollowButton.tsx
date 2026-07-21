@@ -14,11 +14,11 @@ function ExplorePreviewFollowButton({
         onClick={onToggleFollow}
         className={`w-full cursor-pointer rounded-lg py-2 text-sm font-semibold transition-colors ${
           isFollowing
-            ? "bg-neutral-700 text-white hover:bg-neutral-600"
-            : "bg-[#4f5df5] text-white hover:bg-[#4050ed]"
+            ? 'bg-neutral-700 text-white hover:bg-neutral-600'
+            : 'bg-[#4f5df5] text-white hover:bg-[#4050ed]'
         }`}
       >
-        {isFollowing ? "Following" : "Follow"}
+        {isFollowing ? 'Following' : 'Follow'}
       </button>
     </div>
   );

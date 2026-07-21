@@ -1,4 +1,4 @@
-import Sidebar from "@/layouts/Sidebar/Sidebar";
+import Sidebar from '@/layouts/Sidebar/Sidebar';
 
 function PublicLayout({ children }: { children: React.ReactNode }) {
   return (

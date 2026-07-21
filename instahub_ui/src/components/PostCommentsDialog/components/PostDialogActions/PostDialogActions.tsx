@@ -1,5 +1,5 @@
-import { formatCount } from "@/lib/formatCount";
-import { Bookmark, Heart, MessageCircle, Send, Smile } from "lucide-react";
+import { formatCount } from '@/lib/formatCount';
+import { Bookmark, Heart, MessageCircle, Send, Smile } from 'lucide-react';
 
 interface PostDialogActionsProps {
   likes: number;

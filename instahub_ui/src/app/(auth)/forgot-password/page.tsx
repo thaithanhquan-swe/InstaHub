@@ -1,6 +1,6 @@
-import Input from "@/components/ui/input";
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
+import Input from '@/components/ui/input';
+import { ChevronLeft } from 'lucide-react';
+import Link from 'next/link';
 
 export default function LoginPage() {
   return (
@@ -21,7 +21,7 @@ export default function LoginPage() {
             </h1>
 
             <p className="mt-1 text-[15px] text-(--text-white)">
-              Enter your mobile number, username or email.{" "}
+              Enter your mobile number, username or email.{' '}
               <Link
                 href="/login/help"
                 className="text-(--text-primary) hover:underline focus-visible:underline focus-visible:outline-none"

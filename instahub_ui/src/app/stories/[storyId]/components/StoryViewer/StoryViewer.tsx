@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useEffect, useRef } from "react";
+import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
 
-import type { Story } from "@/data/stories";
-import StoryActions from "../StoryActions/StoryActions";
-import StoryHeader from "../StoryHeader/StoryHeader";
-import StoryProgress from "../StoryProgress/StoryProgress";
+import type { Story } from '@/data/stories';
+import StoryActions from '../StoryActions/StoryActions';
+import StoryHeader from '../StoryHeader/StoryHeader';
+import StoryProgress from '../StoryProgress/StoryProgress';
 
 interface StoryViewerProps {
   story: Story;
@@ -32,14 +32,15 @@ function StoryViewer({
   onToggleLike,
 }: StoryViewerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const lastAudibleVolumeRef = useRef(1);
+  const [volume, setVolume] = useState(1);
 
-  const currentMedia =
-    story.media[mediaIndex] ?? story.media[0];
+  const currentMedia = story.media[mediaIndex] ?? story.media[0];
 
   useEffect(() => {
     const video = videoRef.current;
 
-    if (!video || !currentMedia || currentMedia.type !== "video") {
+    if (!video || !currentMedia || currentMedia.type !== 'video') {
       return;
     }
 
@@ -50,17 +51,37 @@ function StoryViewer({
     }
   }, [currentMedia, isPlaying]);
 
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video || currentMedia?.type !== 'video') {
+      return;
+    }
+
+    video.volume = volume;
+    video.muted = volume === 0;
+  }, [currentMedia, volume]);
+
+  const handleVolumeChange = (nextVolume: number) => {
+    setVolume(nextVolume);
+
+    if (nextVolume > 0) {
+      lastAudibleVolumeRef.current = nextVolume;
+    }
+  };
+
+  const handleToggleMuted = () => {
+    handleVolumeChange(volume === 0 ? lastAudibleVolumeRef.current : 0);
+  };
+
   if (!currentMedia) {
     return null;
   }
 
   return (
     <article className="relative h-svh w-full overflow-hidden bg-black sm:h-[min(94vh,900px)] sm:w-[min(52.9vh,475px)] sm:rounded-lg">
-      <div
-        key={`${story.id}-${currentMedia.id}`}
-        className="absolute inset-0"
-      >
-        {currentMedia.type === "image" ? (
+      <div key={`${story.id}-${currentMedia.id}`} className="absolute inset-0">
+        {currentMedia.type === 'image' ? (
           <Image
             src={currentMedia.url}
             alt={`${story.username}'s story`}
@@ -94,7 +115,11 @@ function StoryViewer({
       <StoryHeader
         story={story}
         isPlaying={isPlaying}
+        isVideo={currentMedia.type === 'video'}
+        volume={volume}
         onTogglePlaying={onTogglePlaying}
+        onToggleMuted={handleToggleMuted}
+        onVolumeChange={handleVolumeChange}
       />
 
       <button

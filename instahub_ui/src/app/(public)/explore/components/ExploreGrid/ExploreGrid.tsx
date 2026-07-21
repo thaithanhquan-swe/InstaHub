@@ -1,5 +1,5 @@
-import explorePosts from "@/data/explore";
-import ExploreItem from "../ExploreItem/ExploreItem";
+import explorePosts from '@/data/explore';
+import ExploreItem from '../ExploreItem/ExploreItem';
 
 function ExploreGrid() {
   return (

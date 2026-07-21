@@ -1,6 +1,6 @@
-import Input from "@/components/ui/input";
-import SocialLogin from "../SocialLogin/SocialLogin";
-import Link from "next/link";
+import Input from '@/components/ui/input';
+import SocialLogin from '../SocialLogin/SocialLogin';
+import Link from 'next/link';
 
 export default function LoginForm() {
   return (
@@ -24,7 +24,7 @@ export default function LoginForm() {
         </button>
 
         <Link
-          href={"/forgot-password"}
+          href={'/forgot-password'}
           className="block w-full cursor-pointer rounded-3xl py-2.5 text-center text-(--text-white) hover:bg-(--border-color)"
         >
           Forgot password?

@@ -1,14 +1,14 @@
 const footerLinks = [
-  "ABOUT",
-  "HELP",
-  "PRESS",
-  "API",
-  "JOBS",
-  "PRIVACY",
-  "TERMS",
-  "LOCATIONS",
-  "Language",
-  "META VERIFIED",
+  'ABOUT',
+  'HELP',
+  'PRESS',
+  'API',
+  'JOBS',
+  'PRIVACY',
+  'TERMS',
+  'LOCATIONS',
+  'Language',
+  'META VERIFIED',
 ];
 
 function ExplorePeopleFooter() {
@@ -26,9 +26,7 @@ function ExplorePeopleFooter() {
         ))}
       </div>
 
-      <p className="mt-4 text-xs text-(--text-secondary)">
-        © 2026 INSTAHUB 
-      </p>
+      <p className="mt-4 text-xs text-(--text-secondary)">© 2026 INSTAHUB</p>
     </footer>
   );
 }

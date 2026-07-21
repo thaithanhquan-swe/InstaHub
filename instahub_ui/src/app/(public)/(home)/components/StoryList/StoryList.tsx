@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import type { Swiper as SwiperType } from "swiper";
+import { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import type { Swiper as SwiperType } from 'swiper';
 
-import "swiper/css";
+import 'swiper/css';
 
-import StoryItem from "./components/StoryItem/StoryItem";
-import CarouselButton from "@/components/CarouselButton/CarouselButton";
-import stories from "@/data/stories";
+import StoryItem from './components/StoryItem/StoryItem';
+import CarouselButton from '@/components/CarouselButton/CarouselButton';
+import stories from '@/data/stories';
 
 function StoryList() {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);

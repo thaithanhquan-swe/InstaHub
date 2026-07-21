@@ -1,6 +1,6 @@
-import stories from "@/data/stories";
-import { notFound } from "next/navigation";
-import StoriesClient from "./components/StoriesClient/StoriesClient";
+import stories from '@/data/stories';
+import { notFound } from 'next/navigation';
+import StoriesClient from './components/StoriesClient/StoriesClient';
 
 interface StoriesPageProps {
   params: Promise<{

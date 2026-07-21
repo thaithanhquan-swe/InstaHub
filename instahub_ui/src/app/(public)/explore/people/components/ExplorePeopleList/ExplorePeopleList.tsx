@@ -1,5 +1,5 @@
-import { suggestedUsers } from "@/data/suggestion.data";
-import ExplorePeopleItem from "../ExplorePeopleItem/ExplorePeopleItem";
+import { suggestedUsers } from '@/data/suggestion.data';
+import ExplorePeopleItem from '../ExplorePeopleItem/ExplorePeopleItem';
 
 function ExplorePeopleList() {
   return (
