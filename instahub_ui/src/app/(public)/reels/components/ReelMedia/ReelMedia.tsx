@@ -7,6 +7,7 @@ import {
   Volume2,
   VolumeX,
 } from "lucide-react";
+import { useRef, useState } from "react";
 
 interface ReelMediaProps {
   reel: Reel;
@@ -32,10 +33,54 @@ function ReelMedia({
   onToggleVideo,
   onToggleMuted,
 }: ReelMediaProps) {
+  const videoElementRef = useRef<HTMLVideoElement | null>(null);
+  const lastAudibleVolumeRef = useRef(1);
+  const [volume, setVolume] = useState(1);
+
+  const handleVideoRef = (element: HTMLVideoElement | null) => {
+    videoElementRef.current = element;
+
+    if (element) {
+      element.volume = volume;
+    }
+
+    setVideoRef(index, element);
+  };
+
+  const handleVolumeChange = (nextVolume: number) => {
+    setVolume(nextVolume);
+
+    if (videoElementRef.current) {
+      videoElementRef.current.volume = nextVolume;
+    }
+
+    if (nextVolume > 0) {
+      lastAudibleVolumeRef.current = nextVolume;
+    }
+
+    if ((nextVolume === 0 && !muted) || (nextVolume > 0 && muted)) {
+      onToggleMuted();
+    }
+  };
+
+  const handleToggleMuted = () => {
+    if (muted && volume === 0) {
+      const restoredVolume = lastAudibleVolumeRef.current;
+
+      setVolume(restoredVolume);
+
+      if (videoElementRef.current) {
+        videoElementRef.current.volume = restoredVolume;
+      }
+    }
+
+    onToggleMuted();
+  };
+
   return (
     <div className="absolute inset-0">
       <video
-        ref={(element) => setVideoRef(index, element)}
+        ref={handleVideoRef}
         src={reel.videoUrl}
         muted={muted}
         loop
@@ -61,18 +106,32 @@ function ReelMedia({
         </button>
       )}
 
-      <button
-        type="button"
-        onClick={onToggleMuted}
-        aria-label={muted ? "Unmute reel" : "Mute reel"}
-        className="absolute right-4 bottom-4 z-20 flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/55 backdrop-blur-sm transition-transform hover:scale-110"
-      >
-        {muted ? (
-          <VolumeX size={17} />
-        ) : (
-          <Volume2 size={17} />
-        )}
-      </button>
+      <div className="group/volume absolute right-4 bottom-4 z-20 flex flex-col items-center rounded-full bg-black/55 p-1 backdrop-blur-sm">
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.05"
+          value={volume}
+          onChange={(event) => handleVolumeChange(Number(event.target.value))}
+          aria-label="Reel volume"
+          aria-valuetext={`${Math.round(volume * 100)}%`}
+          className="h-0 w-1 cursor-pointer accent-white opacity-0 transition-all duration-300 ease-out [direction:rtl] [writing-mode:vertical-lr] group-hover/volume:mb-2 group-hover/volume:h-20 group-hover/volume:opacity-100 group-focus-within/volume:mb-2 group-focus-within/volume:h-20 group-focus-within/volume:opacity-100"
+        />
+
+        <button
+          type="button"
+          onClick={handleToggleMuted}
+          aria-label={muted || volume === 0 ? "Unmute reel" : "Mute reel"}
+          className="flex size-6 cursor-pointer items-center justify-center transition-transform hover:scale-110"
+        >
+          {muted || volume === 0 ? (
+            <VolumeX size={17} />
+          ) : (
+            <Volume2 size={17} />
+          )}
+        </button>
+      </div>
 
       <button
         type="button"
