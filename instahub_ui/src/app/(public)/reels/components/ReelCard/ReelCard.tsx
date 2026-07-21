@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import type { Reel } from "@/data/reels";
-import ReelActions from "../ReelActions/ReelActions";
-import ReelInfo from "../ReelInfo/ReelInfo";
-import ReelMedia from "../ReelMedia/ReelMedia";
+import type { Reel } from '@/data/reels';
+import ReelActions from '../ReelActions/ReelActions';
+import ReelInfo from '../ReelInfo/ReelInfo';
+import ReelMedia from '../ReelMedia/ReelMedia';
 
 interface ReelCardProps {
   reel: Reel;
@@ -15,10 +15,7 @@ interface ReelCardProps {
   isFollowing: boolean;
   isCommentsOpen: boolean;
 
-  setVideoRef: (
-    index: number,
-    element: HTMLVideoElement | null,
-  ) => void;
+  setVideoRef: (index: number, element: HTMLVideoElement | null) => void;
 
   onToggleVideo: () => void;
   onToggleMuted: () => void;

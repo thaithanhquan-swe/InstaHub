@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import reels from "@/data/reels";
-import { useReels } from "@/hooks/useReels";
+import reels from '@/data/reels';
+import { useReels } from '@/hooks/useReels';
 
-import CommentsPanel from "../CommentsPanel/CommentsPanel";
-import ReelCard from "../ReelCard/ReelCard";
-import ReelsNavigation from "../ReelNavigation/ReelNavigation";
+import CommentsPanel from '../CommentsPanel/CommentsPanel';
+import ReelCard from '../ReelCard/ReelCard';
+import ReelsNavigation from '../ReelNavigation/ReelNavigation';
 
 function ReelsClient() {
   const {
@@ -45,9 +45,7 @@ function ReelsClient() {
             >
               <div
                 className={`transition-transform duration-300 ease-out ${
-                  isCommentsOpen
-                    ? "xl:-translate-x-47.5"
-                    : "translate-x-0"
+                  isCommentsOpen ? 'xl:-translate-x-47.5' : 'translate-x-0'
                 }`}
               >
                 <ReelCard
@@ -60,30 +58,17 @@ function ReelsClient() {
                   isFollowing={followingIds.includes(reel.id)}
                   isCommentsOpen={isCommentsOpen}
                   setVideoRef={setVideoRef}
-                  onToggleVideo={() =>
-                    toggleVideo(index, reel.id)
-                  }
+                  onToggleVideo={() => toggleVideo(index, reel.id)}
                   onToggleMuted={toggleMuted}
-                  onToggleLike={() =>
-                    toggleLike(reel.id)
-                  }
-                  onToggleSaved={() =>
-                    toggleSaved(reel.id)
-                  }
-                  onToggleFollowing={() =>
-                    toggleFollowing(reel.id)
-                  }
-                  onToggleComments={() =>
-                    toggleComments(reel.id)
-                  }
+                  onToggleLike={() => toggleLike(reel.id)}
+                  onToggleSaved={() => toggleSaved(reel.id)}
+                  onToggleFollowing={() => toggleFollowing(reel.id)}
+                  onToggleComments={() => toggleComments(reel.id)}
                 />
               </div>
 
               {isCommentsOpen && (
-                <CommentsPanel
-                  reel={reel}
-                  onClose={closeComments}
-                />
+                <CommentsPanel reel={reel} onClose={closeComments} />
               )}
             </section>
           );
@@ -93,12 +78,8 @@ function ReelsClient() {
       <ReelsNavigation
         activeIndex={activeIndex}
         totalReels={reels.length}
-        onPrevious={() =>
-          scrollToReel(activeIndex - 1)
-        }
-        onNext={() =>
-          scrollToReel(activeIndex + 1)
-        }
+        onPrevious={() => scrollToReel(activeIndex - 1)}
+        onNext={() => scrollToReel(activeIndex + 1)}
       />
     </main>
   );

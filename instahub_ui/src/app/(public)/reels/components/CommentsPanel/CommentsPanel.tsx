@@ -1,39 +1,28 @@
-"use client";
+'use client';
 
-import type {
-  Reel,
-  ReelComment,
-} from "@/data/reels";
-import { FormEvent, useState } from "react";
-import CommentsHeader from "./components/CommentsHeader/CommentsHeader";
-import CommentsList from "./components/CommentsList/CommentsList";
-import CommentForm from "./components/CommentForm/CommentForm";
-import EmojiPickerPopover from "./components/EmojiPickerPopover/EmojiPickerPopover";
+import type { Reel, ReelComment } from '@/data/reels';
+import { FormEvent, useState } from 'react';
+import CommentsHeader from './components/CommentsHeader/CommentsHeader';
+import CommentsList from './components/CommentsList/CommentsList';
+import CommentForm from './components/CommentForm/CommentForm';
+import EmojiPickerPopover from './components/EmojiPickerPopover/EmojiPickerPopover';
 
 interface CommentsPanelProps {
   reel: Reel;
   onClose: () => void;
 }
 
-function CommentsPanel({
-  reel,
-  onClose,
-}: CommentsPanelProps) {
-  const [content, setContent] = useState("");
-  const [isEmojiPickerOpen, setIsEmojiPickerOpen] =
-    useState(false);
+function CommentsPanel({ reel, onClose }: CommentsPanelProps) {
+  const [content, setContent] = useState('');
+  const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false);
 
-  const [localComments, setLocalComments] = useState<
-    ReelComment[]
-  >(reel.comments);
+  const [localComments, setLocalComments] = useState<ReelComment[]>(
+    reel.comments,
+  );
 
-  const [likedCommentIds, setLikedCommentIds] = useState<
-    number[]
-  >([]);
+  const [likedCommentIds, setLikedCommentIds] = useState<number[]>([]);
 
-  const handleToggleCommentLike = (
-    commentId: number,
-  ) => {
+  const handleToggleCommentLike = (commentId: number) => {
     setLikedCommentIds((currentIds) =>
       currentIds.includes(commentId)
         ? currentIds.filter((id) => id !== commentId)
@@ -47,9 +36,7 @@ function CommentsPanel({
     });
   };
 
-  const handleSubmit = (
-    event: FormEvent<HTMLFormElement>,
-  ) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const trimmedContent = content.trim();
@@ -58,19 +45,16 @@ function CommentsPanel({
 
     const newComment: ReelComment = {
       id: Date.now(),
-      username: "quan.thai_",
-      avatar: "https://i.pravatar.cc/100?img=12",
+      username: 'quan.thai_',
+      avatar: 'https://i.pravatar.cc/100?img=12',
       content: trimmedContent,
-      createdAt: "now",
+      createdAt: 'now',
       likes: 0,
     };
 
-    setLocalComments((currentComments) => [
-      ...currentComments,
-      newComment,
-    ]);
+    setLocalComments((currentComments) => [...currentComments, newComment]);
 
-    setContent("");
+    setContent('');
     setIsEmojiPickerOpen(false);
   };
 
@@ -98,9 +82,7 @@ function CommentsPanel({
             onContentChange={setContent}
             onSubmit={handleSubmit}
             onToggleEmojiPicker={() =>
-              setIsEmojiPickerOpen(
-                (currentState) => !currentState,
-              )
+              setIsEmojiPickerOpen((currentState) => !currentState)
             }
           />
         </div>

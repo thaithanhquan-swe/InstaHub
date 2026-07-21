@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import reels from "@/data/reels";
-import { useEffect, useRef, useState } from "react";
+import reels from '@/data/reels';
+import { useEffect, useRef, useState } from 'react';
 
 export function useReels() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -70,7 +70,7 @@ export function useReels() {
     );
 
     const reelElements =
-      container.querySelectorAll<HTMLElement>("[data-reel-index]");
+      container.querySelectorAll<HTMLElement>('[data-reel-index]');
 
     reelElements.forEach((element) => {
       observer.observe(element);
@@ -81,10 +81,7 @@ export function useReels() {
     };
   }, []);
 
-  const setVideoRef = (
-    index: number,
-    element: HTMLVideoElement | null,
-  ) => {
+  const setVideoRef = (index: number, element: HTMLVideoElement | null) => {
     videoRefs.current[index] = element;
   };
 
@@ -132,9 +129,7 @@ export function useReels() {
   };
 
   const toggleComments = (reelId: number) => {
-    setCommentReelId((currentId) =>
-      currentId === reelId ? null : reelId,
-    );
+    setCommentReelId((currentId) => (currentId === reelId ? null : reelId));
   };
 
   const closeComments = () => {
@@ -142,18 +137,13 @@ export function useReels() {
   };
 
   const scrollToReel = (index: number) => {
-    const targetIndex = Math.min(
-      Math.max(index, 0),
-      reels.length - 1,
-    );
+    const targetIndex = Math.min(Math.max(index, 0), reels.length - 1);
 
     containerRef.current
-      ?.querySelector<HTMLElement>(
-        `[data-reel-index="${targetIndex}"]`,
-      )
+      ?.querySelector<HTMLElement>(`[data-reel-index="${targetIndex}"]`)
       ?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
+        behavior: 'smooth',
+        block: 'center',
       });
   };
 

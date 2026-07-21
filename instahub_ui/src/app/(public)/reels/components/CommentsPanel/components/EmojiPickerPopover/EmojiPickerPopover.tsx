@@ -1,13 +1,7 @@
-"use client";
+'use client';
 
-import EmojiPicker, {
-  EmojiClickData,
-  Theme,
-} from "emoji-picker-react";
-import {
-  useEffect,
-  useRef,
-} from "react";
+import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react';
+import { useEffect, useRef } from 'react';
 
 interface EmojiPickerPopoverProps {
   open: boolean;
@@ -25,45 +19,29 @@ function EmojiPickerPopover({
   useEffect(() => {
     if (!open) return;
 
-    const handleClickOutside = (
-      event: MouseEvent,
-    ) => {
+    const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
 
-      if (
-        pickerRef.current &&
-        !pickerRef.current.contains(target)
-      ) {
+      if (pickerRef.current && !pickerRef.current.contains(target)) {
         onClose();
       }
     };
 
-    document.addEventListener(
-      "mousedown",
-      handleClickOutside,
-    );
+    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      document.removeEventListener(
-        "mousedown",
-        handleClickOutside,
-      );
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [open, onClose]);
 
-  const handleEmojiClick = (
-    emojiData: EmojiClickData,
-  ) => {
+  const handleEmojiClick = (emojiData: EmojiClickData) => {
     onEmojiClick(emojiData.emoji);
   };
 
   if (!open) return null;
 
   return (
-    <div
-      ref={pickerRef}
-      className="absolute right-0 bottom-15 z-100"
-    >
+    <div ref={pickerRef} className="absolute right-0 bottom-15 z-100">
       <EmojiPicker
         theme={Theme.DARK}
         onEmojiClick={handleEmojiClick}

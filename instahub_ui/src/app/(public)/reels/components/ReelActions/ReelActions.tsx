@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import type { Reel } from "@/data/reels";
-import { formatCount } from "@/lib/formatCount";
+import type { Reel } from '@/data/reels';
+import { formatCount } from '@/lib/formatCount';
 import {
   Bookmark,
   Heart,
   MessageCircle,
   MoreHorizontal,
   Send,
-} from "lucide-react";
+} from 'lucide-react';
 
 interface ReelActionsProps {
   reel: Reel;
@@ -36,42 +36,28 @@ function ReelActions({
       <button
         type="button"
         onClick={onToggleLike}
-        aria-label={isLiked ? "Unlike reel" : "Like reel"}
+        aria-label={isLiked ? 'Unlike reel' : 'Like reel'}
         className="flex cursor-pointer flex-col items-center gap-1 transition-transform hover:scale-105 active:scale-90"
       >
         <Heart
           size={30}
           strokeWidth={2}
-          className={
-            isLiked
-              ? "fill-red-500 text-red-500"
-              : "text-white"
-          }
+          className={isLiked ? 'fill-red-500 text-red-500' : 'text-white'}
         />
 
-        <span className="text-xs font-semibold">
-          {formatCount(totalLikes)}
-        </span>
+        <span className="text-xs font-semibold">{formatCount(totalLikes)}</span>
       </button>
 
       <button
         type="button"
         onClick={onToggleComments}
-        aria-label={
-          isCommentsOpen
-            ? "Close comments"
-            : "Open comments"
-        }
+        aria-label={isCommentsOpen ? 'Close comments' : 'Open comments'}
         className="flex cursor-pointer flex-col items-center gap-1 transition-transform hover:scale-105 active:scale-90"
       >
         <MessageCircle
           size={30}
           strokeWidth={2}
-          className={
-            isCommentsOpen
-              ? "fill-white text-white"
-              : "text-white"
-          }
+          className={isCommentsOpen ? 'fill-white text-white' : 'text-white'}
         />
 
         <span className="text-xs font-semibold">
@@ -90,19 +76,13 @@ function ReelActions({
       <button
         type="button"
         onClick={onToggleSaved}
-        aria-label={
-          isSaved ? "Remove saved reel" : "Save reel"
-        }
+        aria-label={isSaved ? 'Remove saved reel' : 'Save reel'}
         className="cursor-pointer transition-transform hover:scale-105 active:scale-90"
       >
         <Bookmark
           size={29}
           strokeWidth={2}
-          className={
-            isSaved
-              ? "fill-white text-white"
-              : "text-white"
-          }
+          className={isSaved ? 'fill-white text-white' : 'text-white'}
         />
       </button>
 
@@ -113,7 +93,6 @@ function ReelActions({
       >
         <MoreHorizontal size={28} strokeWidth={2} />
       </button>
-
     </aside>
   );
 }

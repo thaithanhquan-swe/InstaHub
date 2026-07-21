@@ -1,13 +1,8 @@
-"use client";
+'use client';
 
-import type { Reel } from "@/data/reels";
-import {
-  Pause,
-  Play,
-  Volume2,
-  VolumeX,
-} from "lucide-react";
-import { useRef, useState } from "react";
+import type { Reel } from '@/data/reels';
+import { Pause, Play, Volume2, VolumeX } from 'lucide-react';
+import { useRef, useState } from 'react';
 
 interface ReelMediaProps {
   reel: Reel;
@@ -15,10 +10,7 @@ interface ReelMediaProps {
   muted: boolean;
   isPlaying: boolean;
 
-  setVideoRef: (
-    index: number,
-    element: HTMLVideoElement | null,
-  ) => void;
+  setVideoRef: (index: number, element: HTMLVideoElement | null) => void;
 
   onToggleVideo: () => void;
   onToggleMuted: () => void;
@@ -109,10 +101,7 @@ function ReelMedia({
           aria-label="Play reel"
           className="absolute top-1/2 left-1/2 flex size-16 -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-black/50 backdrop-blur-sm"
         >
-          <Play
-            size={32}
-            className="translate-x-0.5 fill-white text-white"
-          />
+          <Play size={32} className="translate-x-0.5 fill-white text-white" />
         </button>
       )}
 
@@ -132,7 +121,7 @@ function ReelMedia({
         <button
           type="button"
           onClick={handleToggleMuted}
-          aria-label={muted || volume === 0 ? "Unmute reel" : "Mute reel"}
+          aria-label={muted || volume === 0 ? 'Unmute reel' : 'Mute reel'}
           className="flex size-6 cursor-pointer items-center justify-center transition-transform hover:scale-110"
         >
           {muted || volume === 0 ? (
@@ -146,7 +135,7 @@ function ReelMedia({
       <button
         type="button"
         onClick={onToggleVideo}
-        aria-label={isPlaying ? "Pause reel" : "Play reel"}
+        aria-label={isPlaying ? 'Pause reel' : 'Play reel'}
         className="absolute top-4 right-4 z-20 flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/40 opacity-0 backdrop-blur-sm transition-opacity hover:opacity-100"
       >
         {isPlaying ? (

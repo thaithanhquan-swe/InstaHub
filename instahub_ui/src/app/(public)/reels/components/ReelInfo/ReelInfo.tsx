@@ -1,10 +1,7 @@
-"use client";
+'use client';
 
-import type { Reel } from "@/data/reels";
-import {
-  BadgeCheck,
-  Music2,
-} from "lucide-react";
+import type { Reel } from '@/data/reels';
+import { BadgeCheck, Music2 } from 'lucide-react';
 
 interface ReelInfoProps {
   reel: Reel;
@@ -12,11 +9,7 @@ interface ReelInfoProps {
   onToggleFollowing: () => void;
 }
 
-function ReelInfo({
-  reel,
-  isFollowing,
-  onToggleFollowing,
-}: ReelInfoProps) {
+function ReelInfo({ reel, isFollowing, onToggleFollowing }: ReelInfoProps) {
   return (
     <div className="absolute right-4 bottom-5 left-4 z-10">
       <div className="flex items-center gap-2">
@@ -29,15 +22,10 @@ function ReelInfo({
           />
         </div>
 
-        <span className="text-sm font-semibold">
-          {reel.author.username}
-        </span>
+        <span className="text-sm font-semibold">{reel.author.username}</span>
 
         {reel.author.verified && (
-          <BadgeCheck
-            size={16}
-            className="fill-blue-500 text-white"
-          />
+          <BadgeCheck size={16} className="fill-blue-500 text-white" />
         )}
 
         <span className="text-sm text-white/70">•</span>
@@ -47,7 +35,7 @@ function ReelInfo({
           onClick={onToggleFollowing}
           className="cursor-pointer text-sm font-semibold text-blue-400 transition-colors hover:text-white"
         >
-          {isFollowing ? "Following" : "Follow"}
+          {isFollowing ? 'Following' : 'Follow'}
         </button>
       </div>
 
@@ -58,9 +46,7 @@ function ReelInfo({
       <div className="mt-3 flex items-center gap-2 text-sm">
         <Music2 size={15} />
 
-        <p className="max-w-[280px] truncate">
-          {reel.audio}
-        </p>
+        <p className="max-w-[280px] truncate">{reel.audio}</p>
       </div>
     </div>
   );

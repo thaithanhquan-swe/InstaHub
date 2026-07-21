@@ -1,16 +1,12 @@
-"use client";
+'use client';
 
-import { Smile } from "lucide-react";
-import type {
-  FormEvent,
-} from "react";
+import { Smile } from 'lucide-react';
+import type { FormEvent } from 'react';
 
 interface CommentFormProps {
   content: string;
   onContentChange: (content: string) => void;
-  onSubmit: (
-    event: FormEvent<HTMLFormElement>,
-  ) => void;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   onToggleEmojiPicker: () => void;
 }
 
@@ -38,9 +34,7 @@ function CommentForm({
         <input
           type="text"
           value={content}
-          onChange={(event) =>
-            onContentChange(event.target.value)
-          }
+          onChange={(event) => onContentChange(event.target.value)}
           placeholder="Add a comment..."
           className="min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/40"
         />

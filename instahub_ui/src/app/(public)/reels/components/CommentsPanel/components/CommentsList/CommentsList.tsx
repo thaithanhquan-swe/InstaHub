@@ -1,8 +1,7 @@
-"use client";
+'use client';
 
-import type { ReelComment } from "@/data/reels";
-import CommentItem from "../CommentItem/CommentItem";
-
+import type { ReelComment } from '@/data/reels';
+import CommentItem from '../CommentItem/CommentItem';
 
 interface CommentsListProps {
   comments: ReelComment[];
@@ -22,23 +21,15 @@ function CommentsList({
           <CommentItem
             key={comment.id}
             comment={comment}
-            isLiked={likedCommentIds.includes(
-              comment.id,
-            )}
-            onToggleLike={() =>
-              onToggleLike(comment.id)
-            }
+            isLiked={likedCommentIds.includes(comment.id)}
+            onToggleLike={() => onToggleLike(comment.id)}
           />
         ))
       ) : (
         <div className="flex h-full flex-col items-center justify-center text-center">
-          <h3 className="text-lg font-bold">
-            No comments yet
-          </h3>
+          <h3 className="text-lg font-bold">No comments yet</h3>
 
-          <p className="mt-1 text-sm text-white/45">
-            Start the conversation.
-          </p>
+          <p className="mt-1 text-sm text-white/45">Start the conversation.</p>
         </div>
       )}
     </div>

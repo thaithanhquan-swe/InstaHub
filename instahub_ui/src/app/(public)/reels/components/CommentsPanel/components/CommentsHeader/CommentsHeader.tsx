@@ -1,14 +1,12 @@
-"use client";
+'use client';
 
-import { X } from "lucide-react";
+import { X } from 'lucide-react';
 
 interface CommentsHeaderProps {
   onClose: () => void;
 }
 
-function CommentsHeader({
-  onClose,
-}: CommentsHeaderProps) {
+function CommentsHeader({ onClose }: CommentsHeaderProps) {
   return (
     <header className="relative flex h-17 shrink-0 items-center justify-center border-b border-white/5">
       <button
@@ -20,9 +18,7 @@ function CommentsHeader({
         <X size={22} />
       </button>
 
-      <h2 className="text-sm font-bold">
-        Comments
-      </h2>
+      <h2 className="text-sm font-bold">Comments</h2>
     </header>
   );
 }

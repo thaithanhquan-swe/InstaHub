@@ -45,7 +45,7 @@ export default function Sidebar() {
     href === '/' ? pathname === '/' : pathname.startsWith(href);
 
   return (
-    <aside className="group/sidebar fixed top-0 left-0 z-50 flex h-screen w-18 flex-col overflow-hidden px-3 py-6 text-(--text-white) transition-[width] duration-300 ease-in-out hover:w-64">
+    <aside className="group/sidebar bg-(--background-color) fixed top-0 left-0 z-50 flex h-screen w-18 flex-col overflow-hidden px-3 py-6 text-(--text-white) transition-[width] duration-300 ease-in-out hover:w-64">
       {/* Logo */}
       <Link
         href="/"
