@@ -35,7 +35,7 @@ function ReelMedia({
 }: ReelMediaProps) {
   const videoElementRef = useRef<HTMLVideoElement | null>(null);
   const lastAudibleVolumeRef = useRef(1);
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(muted ? 0 : 1);
 
   const handleVideoRef = (element: HTMLVideoElement | null) => {
     videoElementRef.current = element;
@@ -64,13 +64,23 @@ function ReelMedia({
   };
 
   const handleToggleMuted = () => {
-    if (muted && volume === 0) {
+    if (muted) {
       const restoredVolume = lastAudibleVolumeRef.current;
 
       setVolume(restoredVolume);
 
       if (videoElementRef.current) {
         videoElementRef.current.volume = restoredVolume;
+      }
+    } else {
+      if (volume > 0) {
+        lastAudibleVolumeRef.current = volume;
+      }
+
+      setVolume(0);
+
+      if (videoElementRef.current) {
+        videoElementRef.current.volume = 0;
       }
     }
 
