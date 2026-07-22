@@ -16,15 +16,25 @@ interface PostCardProps {
 
 function PostCard({ post }: PostCardProps) {
   const [commentsOpen, setCommentsOpen] = useState(false);
+  const [liked, setLiked] = useState(false);
 
   return (
     <>
-      <article className="w-full max-w-117.5 text-(--text-white)">
+      <article className='w-full max-w-117.5 text-(--text-white)'>
         <PostHeader author={post.author} createdAt={post.createdAt} />
 
-        <PostMedia media={post.media} alt={`${post.author.username} post`} />
+        <PostMedia
+          media={post.media}
+          alt={`${post.author.username} post`}
+          onLike={() => setLiked(true)}
+        />
 
-        <PostActions post={post} onViewComments={() => setCommentsOpen(true)} />
+        <PostActions
+          post={post}
+          liked={liked}
+          onToggleLike={() => setLiked((value) => !value)}
+          onViewComments={() => setCommentsOpen(true)}
+        />
 
         <PostCaption
           username={post.author.username}

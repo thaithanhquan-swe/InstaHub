@@ -5,7 +5,8 @@ import { Heart, House, Plus, Search, Send, SquarePlay } from 'lucide-react';
 import { InstagramIcon } from '@/assets/icon';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import NotificationsPanel from './NotificationsPanel';
+import NotificationsPanel from './components/NotificationsPanel/NotificationsPanel';
+import CreatePostDialog from './components/CreatePostDialog/CreatePostDialog';
 
 const menuItems = [
   {
@@ -43,6 +44,7 @@ const menuItems = [
 export default function Sidebar() {
   const pathname = usePathname();
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
 
   useEffect(() => {
     if (!isNotificationsOpen) return;
@@ -76,6 +78,8 @@ export default function Sidebar() {
         open={isNotificationsOpen}
         onClose={() => setIsNotificationsOpen(false)}
       />
+
+      <CreatePostDialog open={isCreateOpen} onOpenChange={setIsCreateOpen} />
 
       <aside
         aria-hidden={isNotificationsOpen}
@@ -126,6 +130,30 @@ export default function Sidebar() {
                             : 'group-hover/sidebar:translate-x-0 group-hover/sidebar:opacity-100'
                         }`}
                       >
+                        {label}
+                      </span>
+                    </button>
+                  </li>
+                );
+              }
+
+              if (label === 'Create') {
+                return (
+                  <li key={label}>
+                    <button
+                      type='button'
+                      aria-haspopup='dialog'
+                      aria-expanded={isCreateOpen}
+                      onClick={() => {
+                        setIsNotificationsOpen(false);
+                        setIsCreateOpen(true);
+                      }}
+                      className={`flex h-13 w-full cursor-pointer items-center gap-4 rounded-[10px] px-3 text-left transition-colors duration-200 hover:bg-(--hover-color) ${
+                        isCreateOpen ? 'bg-(--hover-color)' : ''
+                      }`}
+                    >
+                      <Icon size={27} className='shrink-0' />
+                      <span className='translate-x-2 text-base whitespace-nowrap opacity-0 transition-all duration-300 group-hover/sidebar:translate-x-0 group-hover/sidebar:opacity-100'>
                         {label}
                       </span>
                     </button>

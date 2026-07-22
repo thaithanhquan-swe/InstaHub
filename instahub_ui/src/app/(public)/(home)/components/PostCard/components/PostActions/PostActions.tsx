@@ -7,23 +7,29 @@ import { formatCount } from '@/lib/formatCount';
 
 interface PostCardProps {
   post: Post;
+  liked: boolean;
+  onToggleLike: () => void;
   onViewComments: () => void;
 }
 
-function PostActions({ post, onViewComments }: PostCardProps) {
-  const [liked, setLiked] = useState(false);
+function PostActions({
+  post,
+  liked,
+  onToggleLike,
+  onViewComments
+}: PostCardProps) {
   const [saved, setSaved] = useState(false);
 
   return (
-    <div className="mt-3 px-2">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1">
+    <div className='mt-3 px-2'>
+      <div className='flex items-center justify-between'>
+        <div className='flex items-center gap-3'>
+          <div className='flex items-center gap-1'>
             <button
-              type="button"
+              type='button'
               aria-label={liked ? 'Unlike post' : 'Like post'}
-              onClick={() => setLiked((value) => !value)}
-              className="cursor-pointer transition-transform duration-150 hover:scale-110 active:scale-90"
+              onClick={onToggleLike}
+              className='cursor-pointer transition-transform duration-150 hover:scale-110 active:scale-90'
             >
               <Heart
                 size={26}
@@ -32,38 +38,40 @@ function PostActions({ post, onViewComments }: PostCardProps) {
               />
             </button>
 
-            <p className="text-sm font-semibold">{formatCount(post.likes)}</p>
+            <p className='text-sm font-semibold'>
+              {formatCount(post.likes + (liked ? 1 : 0))}
+            </p>
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className='flex items-center gap-1'>
             <button
-              type="button"
-              aria-label="Comment"
+              type='button'
+              aria-label='Comment'
               onClick={onViewComments}
-              className="cursor-pointer transition-transform duration-150 hover:scale-110 active:scale-90"
+              className='cursor-pointer transition-transform duration-150 hover:scale-110 active:scale-90'
             >
               <MessageCircle size={26} />
             </button>
 
-            <p className="text-sm font-semibold">
+            <p className='text-sm font-semibold'>
               {formatCount(post.comments)}
             </p>
           </div>
 
           <button
-            type="button"
-            aria-label="Share post"
-            className="cursor-pointer transition-transform duration-150 hover:scale-110 active:scale-90"
+            type='button'
+            aria-label='Share post'
+            className='cursor-pointer transition-transform duration-150 hover:scale-110 active:scale-90'
           >
             <Send size={25} />
           </button>
         </div>
 
         <button
-          type="button"
+          type='button'
           aria-label={saved ? 'Remove from saved' : 'Save post'}
           onClick={() => setSaved((value) => !value)}
-          className="cursor-pointer transition-transform duration-150 hover:scale-110 active:scale-90"
+          className='cursor-pointer transition-transform duration-150 hover:scale-110 active:scale-90'
         >
           <Bookmark size={26} fill={saved ? 'currentColor' : 'none'} />
         </button>
