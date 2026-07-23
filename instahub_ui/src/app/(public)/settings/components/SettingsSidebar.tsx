@@ -1,4 +1,4 @@
-import { Search, ShieldCheck, UserRound } from 'lucide-react';
+import { Search, ShieldCheck } from 'lucide-react';
 import type { SettingsGroup } from '../../../../data/settings';
 
 type SettingsSidebarProps = {
@@ -37,25 +37,6 @@ export default function SettingsSidebar({
           <div className='mb-3 flex items-center justify-between px-4 text-xs text-[#a8a8a8]'>
             <span>Your account</span>
           </div>
-          <button
-            type='button'
-            onClick={() => onSectionChange('accounts-center')}
-            className={`flex w-full cursor-pointer gap-3 rounded-xl p-4 text-left transition-colors hover:bg-[#26292e] ${
-              activeSection === 'accounts-center' ? 'bg-[#26292e]' : ''
-            }`}
-          >
-            <UserRound size={24} className='mt-0.5 shrink-0' />
-            <span>
-              <span className='block text-sm font-semibold'>
-                Accounts Center
-              </span>
-              <span className='mt-1 block text-xs leading-5 text-[#c7c7c7]'>
-                Password, security, personal details, connected experiences and
-                ad preferences
-              </span>
-            </span>
-          </button>
-
           <button
             type='button'
             onClick={() => onSectionChange('meta-verified')}

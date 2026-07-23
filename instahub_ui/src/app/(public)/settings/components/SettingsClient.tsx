@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { settingsGroups } from '../../../../data/settings';
+import SettingsFooter from './SettingsFooter';
 import SettingsPanel from './SettingsPanel';
 import SettingsSidebar from './SettingsSidebar';
 
@@ -34,7 +35,12 @@ export default function SettingsClient() {
       />
 
       <main className='min-w-0 flex-1 overflow-y-auto px-10'>
-        <SettingsPanel activeSection={activeSection} />
+        <div className='flex min-h-full flex-col'>
+          <div className='flex-1'>
+            <SettingsPanel activeSection={activeSection} />
+          </div>
+          <SettingsFooter />
+        </div>
       </main>
     </div>
   );
