@@ -2,7 +2,7 @@ import { ChevronDown, Edit, Search, X } from 'lucide-react';
 
 import type { MessageConversation } from '@/types/message.types';
 
-import MessagesConversationItem from './MessagesConversationItem';
+import MessagesConversationItem from '../MessagesConversationItem/MessagesConversationItem';
 
 interface MessagesSidebarProps {
   conversations: MessageConversation[];
@@ -19,7 +19,7 @@ function MessagesSidebar({
   search,
   isConversationOpen,
   onSearchChange,
-  onSelectConversation,
+  onSelectConversation
 }: MessagesSidebarProps) {
   return (
     <aside
@@ -27,31 +27,31 @@ function MessagesSidebar({
         isConversationOpen ? 'hidden md:flex md:flex-col' : 'flex flex-col'
       }`}
     >
-      <header className="flex h-20 shrink-0 items-center justify-between px-6 pt-2">
+      <header className='flex h-20 shrink-0 items-center justify-between px-6 pt-2'>
         <button
-          type="button"
-          className="flex cursor-pointer items-center gap-1 text-xl font-bold"
+          type='button'
+          className='flex cursor-pointer items-center gap-1 text-xl font-bold'
         >
           quan.thai_
         </button>
       </header>
 
-      <div className="px-4 pb-3">
-        <div className="flex h-10 items-center gap-3 rounded-xl bg-[#262626] px-4 text-[#a8a8a8]">
+      <div className='px-4 pb-3'>
+        <div className='flex h-10 items-center gap-3 rounded-xl bg-[#262626] px-4 text-[#a8a8a8]'>
           <Search size={18} />
           <input
             value={search}
             onChange={(event) => onSearchChange(event.target.value)}
-            placeholder="Search"
-            aria-label="Search conversations"
-            className="min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-[#a8a8a8]"
+            placeholder='Search'
+            aria-label='Search conversations'
+            className='min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-[#a8a8a8]'
           />
           {search && (
             <button
-              type="button"
+              type='button'
               onClick={() => onSearchChange('')}
-              aria-label="Clear search"
-              className="cursor-pointer rounded-full bg-[#a8a8a8] p-0.5 text-[#262626]"
+              aria-label='Clear search'
+              className='cursor-pointer rounded-full bg-[#a8a8a8] p-0.5 text-[#262626]'
             >
               <X size={12} strokeWidth={3} />
             </button>
@@ -59,11 +59,11 @@ function MessagesSidebar({
         </div>
       </div>
 
-      <div className="flex items-center justify-between px-6 py-3">
-        <h1 className="text-base font-bold">Messages</h1>
+      <div className='flex items-center justify-between px-6 py-3'>
+        <h1 className='text-base font-bold'>Messages</h1>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className='min-h-0 flex-1 overflow-y-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
         {conversations.length ? (
           conversations.map((conversation) => (
             <MessagesConversationItem
@@ -74,7 +74,7 @@ function MessagesSidebar({
             />
           ))
         ) : (
-          <p className="px-6 py-8 text-center text-sm text-[#a8a8a8]">
+          <p className='px-6 py-8 text-center text-sm text-[#a8a8a8]'>
             No accounts found.
           </p>
         )}

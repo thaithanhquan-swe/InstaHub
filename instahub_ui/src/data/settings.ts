@@ -38,6 +38,7 @@ export const settingsGroups: SettingsGroup[] = [
 export const profileData = {
   image:
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSev1GqxHajibRl6Ote8SwM9DhdYNN2NuWLSwXP2pn8F-fpKxd5S1sLWQU&s=10',
+  slug: 'instahub-user',
   username: 'instahub_user',
   displayName: 'InstaHub User',
   email: 'thaithanhquan11102005@gmail.com',

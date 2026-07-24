@@ -2,16 +2,17 @@ import { suggestedUsers } from '@/data/suggestion.data';
 import CurrentUserCard from './components/CurrentUserCard/CurrentUserCard';
 import SuggestionItem from './components/SuggestionItem/SuggestionItem';
 import SuggestionFooter from './components/SuggestionFooter/SuggestionFooter';
-import { images } from '@/assets/images';
 import Link from 'next/link';
+import { profileData } from '@/data/settings';
 
 function SuggestionList() {
   return (
     <aside className="mt-9 w-full max-w-90 pl-16">
       <CurrentUserCard
-        username="quan.thai_"
-        fullName="Quân Thái"
-        avatar={images.loginPreview}
+        slug={profileData.slug}
+        username={profileData.username}
+        fullName={profileData.displayName}
+        avatar={profileData.image}
       />
 
       <div className="mb-4 flex items-center justify-between">

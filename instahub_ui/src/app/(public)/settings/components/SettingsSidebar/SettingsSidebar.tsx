@@ -1,5 +1,5 @@
 import { Search, ShieldCheck } from 'lucide-react';
-import type { SettingsGroup } from '../../../../data/settings';
+import type { SettingsGroup } from '../../../../../data/settings';
 
 type SettingsSidebarProps = {
   activeSection: string;

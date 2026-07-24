@@ -1,10 +1,10 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { settingsGroups } from '../../../../data/settings';
-import SettingsFooter from './SettingsFooter';
-import SettingsPanel from './SettingsPanel';
-import SettingsSidebar from './SettingsSidebar';
+import { settingsGroups } from '../../../../../data/settings';
+import SettingsFooter from '../SettingsFooter/SettingsFooter';
+import SettingsPanel from '../SettingsPanel/SettingsPanel';
+import SettingsSidebar from '../SettingsSidebar/SettingsSidebar';
 
 export default function SettingsClient() {
   const [activeSection, setActiveSection] = useState('edit-profile');

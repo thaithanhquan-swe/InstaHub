@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { BadgeCheck } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { SuggestedUser } from '@/data/suggestion.data';
 import ExplorePreview from '@/components/ExplorePreview/ExplorePreview';
@@ -49,19 +50,24 @@ function SuggestionItem({ user }: SuggestionItemProps) {
     <div className="group relative cursor-pointer">
       <div className="flex items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <Image
-            src={user.avatar}
-            alt={`${user.username} avatar`}
-            width={44}
-            height={44}
-            className="size-11 shrink-0 rounded-full object-cover"
-          />
+          <Link href={`/${user.slug}`} className="shrink-0">
+            <Image
+              src={user.avatar}
+              alt={`${user.username} avatar`}
+              width={44}
+              height={44}
+              className="size-11 rounded-full object-cover"
+            />
+          </Link>
 
           <div className="min-w-0">
             <div className="flex items-center gap-1">
-              <p className="truncate text-sm font-semibold text-(--text-white)">
+              <Link
+                href={`/${user.slug}`}
+                className="truncate text-sm font-semibold text-(--text-white) hover:opacity-70"
+              >
                 {user.username}
-              </p>
+              </Link>
 
               {user.verified && (
                 <BadgeCheck

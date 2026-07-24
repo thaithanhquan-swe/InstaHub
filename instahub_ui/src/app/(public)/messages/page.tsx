@@ -1,4 +1,4 @@
-import MessagesClient from './components/MessagesClient';
+import MessagesClient from './components/MessagesClient/MessagesClient';
 
 interface MessagesPageProps {
   searchParams: Promise<{

@@ -7,8 +7,8 @@ import type {
   OutgoingChatMessage
 } from '@/types/message.types';
 
-import MessagesComposer from './MessagesComposer';
-import MessagesDetailsPanel from './MessagesDetailsPanel';
+import MessagesComposer from '../MessagesComposer/MessagesComposer';
+import MessagesDetailsPanel from '../MessagesDetailsPanel/MessagesDetailsPanel';
 
 const reactionEmojis = ['❤️', '😂', '😮', '😢', '😡', '👍'];
 

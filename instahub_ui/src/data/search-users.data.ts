@@ -1,5 +1,6 @@
 export interface SearchUser {
   id: number;
+  slug: string;
   username: string;
   name: string;
   avatar: string;
@@ -10,6 +11,7 @@ export interface SearchUser {
 export const searchUsers: SearchUser[] = [
   {
     id: 1,
+    slug: 'dasstudios-vn',
     username: 'dasstudios.vn',
     name: 'DAS',
     avatar: 'https://i.pravatar.cc/150?img=8',
@@ -17,6 +19,7 @@ export const searchUsers: SearchUser[] = [
   },
   {
     id: 2,
+    slug: 'dashberlin',
     username: 'dashberlin',
     name: 'Dash Berlin',
     avatar: 'https://i.pravatar.cc/150?img=12',
@@ -25,6 +28,7 @@ export const searchUsers: SearchUser[] = [
   },
   {
     id: 3,
+    slug: 'das-archieve',
     username: 'das.archieve',
     name: 'DAS ARCHIVEE ™',
     avatar: 'https://i.pravatar.cc/150?img=11',
@@ -32,6 +36,7 @@ export const searchUsers: SearchUser[] = [
   },
   {
     id: 4,
+    slug: 'taaarannn',
     username: 'taaarannn',
     name: 'Dasha Taran',
     avatar: 'https://i.pravatar.cc/150?img=47',
@@ -40,6 +45,7 @@ export const searchUsers: SearchUser[] = [
   },
   {
     id: 5,
+    slug: 'dsavvofb',
     username: 'dsavvofb_',
     name: 'DSA Visuals',
     avatar: 'https://i.pravatar.cc/150?img=53',
@@ -48,6 +54,7 @@ export const searchUsers: SearchUser[] = [
   },
   {
     id: 6,
+    slug: 'cortis',
     username: 'cortis',
     name: 'Cortis',
     avatar: 'https://i.pravatar.cc/150?img=15',
@@ -56,6 +63,7 @@ export const searchUsers: SearchUser[] = [
   },
   {
     id: 7,
+    slug: 'jennie',
     username: 'jennie',
     name: 'JENNIE',
     avatar: 'https://i.pravatar.cc/150?img=25',
@@ -64,6 +72,7 @@ export const searchUsers: SearchUser[] = [
   },
   {
     id: 8,
+    slug: 'travel-daily',
     username: 'travel.daily',
     name: 'Travel Daily',
     avatar: 'https://i.pravatar.cc/150?img=32',

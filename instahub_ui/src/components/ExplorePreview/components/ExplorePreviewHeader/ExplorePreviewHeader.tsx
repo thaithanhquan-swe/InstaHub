@@ -21,7 +21,7 @@ function ExplorePreviewHeader({ user }: ExplorePreviewHeaderProps) {
 
       <div className="min-w-0">
         <Link
-          href={`/${user.username}`}
+          href={`/${user.slug}`}
           className="block truncate text-sm font-semibold text-white"
         >
           {user.nickname}

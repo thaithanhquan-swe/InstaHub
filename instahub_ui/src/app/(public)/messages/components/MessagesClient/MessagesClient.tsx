@@ -6,11 +6,11 @@ import { useMemo, useState } from 'react';
 import { messageConversations } from '@/data/messages.data';
 import type {
   MessageConversation,
-  OutgoingChatMessage,
+  OutgoingChatMessage
 } from '@/types/message.types';
 
-import MessagesSidebar from './MessagesSidebar';
-import MessagesThread from './MessagesThread';
+import MessagesSidebar from '../MessagesSidebar/MessagesSidebar';
+import MessagesThread from '../MessagesThread/MessagesThread';
 
 interface MessagesClientProps {
   initialConversationId: number | null;
@@ -19,21 +19,21 @@ interface MessagesClientProps {
 function MessagesClient({ initialConversationId }: MessagesClientProps) {
   const router = useRouter();
   const [conversations, setConversations] = useState<MessageConversation[]>(
-    () => messageConversations,
+    () => messageConversations
   );
   const [selectedConversationId, setSelectedConversationId] = useState<
     number | null
   >(() =>
     messageConversations.some(
-      (conversation) => conversation.id === initialConversationId,
+      (conversation) => conversation.id === initialConversationId
     )
       ? initialConversationId
-      : null,
+      : null
   );
   const [search, setSearch] = useState('');
 
   const selectedConversation = conversations.find(
-    (conversation) => conversation.id === selectedConversationId,
+    (conversation) => conversation.id === selectedConversationId
   );
 
   const filteredConversations = useMemo(() => {
@@ -44,14 +44,14 @@ function MessagesClient({ initialConversationId }: MessagesClientProps) {
     return conversations.filter((conversation) =>
       `${conversation.name} ${conversation.username}`
         .toLocaleLowerCase()
-        .includes(normalizedSearch),
+        .includes(normalizedSearch)
     );
   }, [conversations, search]);
 
   const handleSelectConversation = (conversationId: number) => {
     setSelectedConversationId(conversationId);
     router.replace(`/messages?conversation=${conversationId}`, {
-      scroll: false,
+      scroll: false
     });
   };
 
@@ -77,7 +77,7 @@ function MessagesClient({ initialConversationId }: MessagesClientProps) {
           messages: [
             ...conversation.messages.map((message) => ({
               ...message,
-              seen: false,
+              seen: false
             })),
             {
               id: Date.now(),
@@ -87,13 +87,13 @@ function MessagesClient({ initialConversationId }: MessagesClientProps) {
               mediaUrl: outgoingMessage.mediaUrl,
               createdAt: new Date().toLocaleTimeString('en-US', {
                 hour: 'numeric',
-                minute: '2-digit',
+                minute: '2-digit'
               }),
-              seen: true,
-            },
-          ],
+              seen: true
+            }
+          ]
         };
-      }),
+      })
     );
   };
 
@@ -110,17 +110,17 @@ function MessagesClient({ initialConversationId }: MessagesClientProps) {
             message.id === messageId
               ? {
                   ...message,
-                  reaction: message.reaction === emoji ? undefined : emoji,
+                  reaction: message.reaction === emoji ? undefined : emoji
                 }
-              : message,
-          ),
+              : message
+          )
         };
-      }),
+      })
     );
   };
 
   return (
-    <div className="fixed inset-y-0 right-0 left-18 z-20 flex overflow-hidden bg-black text-[#f5f5f5]">
+    <div className='fixed inset-y-0 right-0 left-18 z-20 flex overflow-hidden bg-black text-[#f5f5f5]'>
       <MessagesSidebar
         conversations={filteredConversations}
         selectedConversationId={selectedConversationId}

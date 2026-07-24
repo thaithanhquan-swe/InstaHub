@@ -1,15 +1,22 @@
 import Image, { type StaticImageData } from 'next/image';
+import Link from 'next/link';
 
 interface CurrentUserCardProps {
+  slug: string;
   username: string;
   fullName: string;
   avatar: StaticImageData | string;
 }
 
-function CurrentUserCard({ username, fullName, avatar }: CurrentUserCardProps) {
+function CurrentUserCard({
+  slug,
+  username,
+  fullName,
+  avatar,
+}: CurrentUserCardProps) {
   return (
     <div className="mb-6 flex items-center justify-between">
-      <div className="flex min-w-0 items-center gap-3">
+      <Link href={`/${slug}`} className="flex min-w-0 items-center gap-3">
         <Image
           src={avatar}
           alt={`${username} avatar`}
@@ -25,7 +32,7 @@ function CurrentUserCard({ username, fullName, avatar }: CurrentUserCardProps) {
 
           <p className="truncate text-sm text-[#a8a8a8]">{fullName}</p>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }

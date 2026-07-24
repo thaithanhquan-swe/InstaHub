@@ -17,6 +17,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import NotificationsPanel from './components/NotificationsPanel/NotificationsPanel';
 import CreatePostDialog from './components/CreatePostDialog/CreatePostDialog';
+import { profileData } from '@/data/settings';
 
 const menuItems = [
   {
@@ -242,7 +243,7 @@ export default function Sidebar() {
                 }`}
               >
                 <Link
-                  href='/profile'
+                  href={`/${profileData.slug}`}
                   role='menuitem'
                   tabIndex={isProfileMenuOpen ? 0 : -1}
                   onClick={() => setIsProfileMenuOpen(false)}
@@ -287,7 +288,7 @@ export default function Sidebar() {
                   setIsProfileMenuOpen((open) => !open);
                 }}
                 className={`flex h-13 w-full cursor-pointer items-center gap-4 rounded-[10px] px-3 text-left transition-colors duration-200 hover:bg-(--hover-color) ${
-                  isActive('/profile') || isProfileMenuOpen
+                  pathname === `/${profileData.slug}` || isProfileMenuOpen
                     ? 'bg-(--hover-color)'
                     : ''
                 }`}
@@ -298,7 +299,9 @@ export default function Sidebar() {
                   width={27}
                   height={27}
                   className={`shrink-0 rounded-full object-cover ${
-                    isActive('/profile') ? 'ring-2 ring-(--text-white)' : ''
+                    pathname === `/${profileData.slug}`
+                      ? 'ring-2 ring-(--text-white)'
+                      : ''
                   }`}
                 />
 

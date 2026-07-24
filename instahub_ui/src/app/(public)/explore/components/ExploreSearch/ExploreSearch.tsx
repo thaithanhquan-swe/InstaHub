@@ -116,7 +116,7 @@ function ExploreSearch() {
               {filteredUsers.map((user) => (
                 <Link
                   key={user.id}
-                  href={`/${user.username}`}
+                  href={`/${user.slug}`}
                   onClick={closeSearch}
                   className='flex items-center gap-3 rounded-lg px-1 py-2 transition-colors hover:bg-white/6'
                 >

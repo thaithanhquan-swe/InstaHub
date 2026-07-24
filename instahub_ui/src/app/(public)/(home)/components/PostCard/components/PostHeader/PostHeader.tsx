@@ -1,6 +1,8 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { BadgeCheck, Dot } from 'lucide-react';
 import { PostAuthor } from '@/types/post.types';
+import { getProfileSlug } from '@/lib/getProfileSlug';
 import PostMenu from './components/PostMenu/PostMenu';
 
 interface PostHeaderProps {
@@ -12,7 +14,11 @@ function PostHeader({ author, createdAt }: PostHeaderProps) {
   return (
     <header className="flex items-center justify-between px-2 pb-3">
       <div className="flex items-center gap-2">
-        <div className="rounded-full bg-(image:--ig-gradient-close-friends) p-0.5">
+        <Link
+          href={`/${getProfileSlug(author.username)}`}
+          aria-label={`View ${author.username}'s profile`}
+          className="rounded-full bg-(image:--ig-gradient-close-friends) p-0.5"
+        >
           <div className="rounded-full bg-black p-0.5">
             <Image
               src={author.avatar}
@@ -22,10 +28,15 @@ function PostHeader({ author, createdAt }: PostHeaderProps) {
               className="size-8 rounded-full object-cover"
             />
           </div>
-        </div>
+        </Link>
 
         <div className="flex items-center text-sm">
-          <span className="pr-0.5 font-semibold">{author.username}</span>
+          <Link
+            href={`/${getProfileSlug(author.username)}`}
+            className="pr-0.5 font-semibold hover:opacity-70"
+          >
+            {author.username}
+          </Link>
 
           {author.verified && (
             <BadgeCheck size={14} fill="var(--text-primary)" color="white" />

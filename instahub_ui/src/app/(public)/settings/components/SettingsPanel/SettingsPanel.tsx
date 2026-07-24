@@ -1,7 +1,7 @@
-import BlockedPanel from './panels/BlockedPanel';
-import EditProfilePanel from './panels/EditProfilePanel';
-import MetaVerifiedPanel from './panels/MetaVerifiedPanel';
-import PrivacyPanel from './panels/PrivacyPanel';
+import BlockedPanel from '../panels/BlockedPanel';
+import EditProfilePanel from '../panels/EditProfilePanel';
+import MetaVerifiedPanel from '../panels/MetaVerifiedPanel';
+import PrivacyPanel from '../panels/PrivacyPanel';
 
 type SettingsPanelProps = {
   activeSection: string;

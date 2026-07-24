@@ -5,6 +5,7 @@ type ImageSource = StaticImageData | string;
 
 export interface SuggestedUser {
   id: number;
+  slug: string;
   username: string;
   nickname: string;
   avatar: ImageSource;
@@ -28,6 +29,7 @@ export interface SuggestedUser {
 export const suggestedUsers: SuggestedUser[] = [
   {
     id: 1,
+    slug: 'bt-thuytrangg',
     username: 'bt_thuytrangg',
     nickname: 'BT Thùy Trangg',
     avatar: images.loginPreview,
@@ -40,6 +42,7 @@ export const suggestedUsers: SuggestedUser[] = [
   },
   {
     id: 2,
+    slug: 'marzuz',
     username: 'marzuz',
     nickname: 'Marzuz',
     avatar: images.loginPreview,
@@ -56,6 +59,7 @@ export const suggestedUsers: SuggestedUser[] = [
   },
   {
     id: 3,
+    slug: 'kimngann',
     username: 'kimngann',
     nickname: 'Kim Ngân',
     avatar: images.loginPreview,
@@ -76,6 +80,7 @@ export const suggestedUsers: SuggestedUser[] = [
   },
   {
     id: 4,
+    slug: 'nhomnhom',
     username: 'nhomnhom',
     nickname: 'Nhomnhom',
     avatar: images.loginPreview,
@@ -92,6 +97,7 @@ export const suggestedUsers: SuggestedUser[] = [
   },
   {
     id: 5,
+    slug: 'roses-are-rosie',
     username: 'roses_are_rosie',
     nickname: 'ROSÉ',
     avatar: images.loginPreview,
@@ -109,6 +115,7 @@ export const suggestedUsers: SuggestedUser[] = [
   },
   {
     id: 6,
+    slug: 'bt-thuytrangg-2',
     username: 'bt_thuytrangg_2',
     nickname: 'BT Thùy Trangg',
     avatar: images.loginPreview,
@@ -125,6 +132,7 @@ export const suggestedUsers: SuggestedUser[] = [
   },
   {
     id: 7,
+    slug: 'marzuz-2',
     username: 'marzuz_2',
     nickname: 'Marzuz',
     avatar: images.loginPreview,
@@ -146,6 +154,7 @@ export const suggestedUsers: SuggestedUser[] = [
   },
   {
     id: 8,
+    slug: 'kimngann-2',
     username: 'kimngann_2',
     nickname: 'Kim Ngân',
     avatar: images.loginPreview,
@@ -162,6 +171,7 @@ export const suggestedUsers: SuggestedUser[] = [
   },
   {
     id: 9,
+    slug: 'nhomnhom-2',
     username: 'nhomnhom_2',
     nickname: 'Nhomnhom',
     avatar: images.loginPreview,
@@ -178,6 +188,7 @@ export const suggestedUsers: SuggestedUser[] = [
   },
   {
     id: 10,
+    slug: 'roses-are-rosie-2',
     username: 'roses_are_rosie_2',
     nickname: 'ROSÉ',
     avatar: images.loginPreview,
