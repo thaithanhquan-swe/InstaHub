@@ -1,18 +1,14 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { Bookmark, Grid3X3, Heart, LockKeyhole } from 'lucide-react';
+import { useState } from 'react';
+import { Bookmark, Grid3X3, LockKeyhole } from 'lucide-react';
 
-import ExploreItem from '@/app/(public)/explore/components/ExploreItem/ExploreItem';
+import PostGridItem from '@/components/PostGridItem/PostGridItem';
 import type { UserProfile } from '@/data/profiles';
 
-type ProfileTab = 'posts' | 'save' | 'like';
+import ProfileSaved from '../ProfileSaved/ProfileSaved';
 
-const tabs: { id: ProfileTab; icon: typeof Grid3X3 }[] = [
-  { id: 'posts', icon: Grid3X3 },
-  { id: 'save', icon: Bookmark },
-  { id: 'like', icon: Heart }
-];
+type ProfileTab = 'posts' | 'save';
 
 interface ProfileContentProps {
   profile: UserProfile;
@@ -21,28 +17,26 @@ interface ProfileContentProps {
 export default function ProfileContent({ profile }: ProfileContentProps) {
   const [activeTab, setActiveTab] = useState<ProfileTab>('posts');
 
-  const visiblePosts = useMemo(() => {
-    if (activeTab === 'save' || activeTab === 'like') {
-      return [];
-    }
-
-    return profile.posts;
-  }, [activeTab, profile.posts]);
-
   return (
     <section className='mt-6'>
-      <ProfileTabs activeTab={activeTab} onTabChange={setActiveTab} />
+      <ProfileTabs
+        activeTab={activeTab}
+        showSavedTab={profile.isCurrentUser}
+        onTabChange={setActiveTab}
+      />
 
       {profile.isPrivate && !profile.isCurrentUser ? (
         <PrivateProfile />
-      ) : visiblePosts.length > 0 ? (
+      ) : activeTab === 'save' ? (
+        <ProfileSaved posts={profile.savedPosts ?? []} />
+      ) : profile.posts.length > 0 ? (
         <div className='grid grid-cols-4 '>
-          {visiblePosts.map((post) => (
-            <ExploreItem key={post.id} post={post} />
+          {profile.posts.map((post) => (
+            <PostGridItem key={post.id} post={post} />
           ))}
         </div>
       ) : (
-        <EmptyTab />
+        <EmptyPosts />
       )}
     </section>
   );
@@ -50,18 +44,29 @@ export default function ProfileContent({ profile }: ProfileContentProps) {
 
 function ProfileTabs({
   activeTab,
+  showSavedTab,
   onTabChange
 }: {
   activeTab: ProfileTab;
+  showSavedTab: boolean;
   onTabChange: (tab: ProfileTab) => void;
 }) {
+  const tabs: { id: ProfileTab; icon: typeof Grid3X3; label: string }[] = [
+    { id: 'posts', icon: Grid3X3, label: 'Posts' },
+    ...(showSavedTab
+      ? [{ id: 'save' as const, icon: Bookmark, label: 'Saved' }]
+      : [])
+  ];
+
   return (
     <div className='flex h-13 items-stretch justify-center gap-50'>
-      {tabs.map(({ id, icon: Icon }) => (
+      {tabs.map(({ id, icon: Icon, label }) => (
         <button
           type='button'
           key={id}
           onClick={() => onTabChange(id)}
+          aria-label={label}
+          aria-pressed={activeTab === id}
           className={`relative flex cursor-pointer items-center gap-1.5 text-[11px] font-semibold tracking-[0.12em] uppercase transition-colors ${
             activeTab === id ? 'text-white' : 'text-[#a8a8a8]'
           }`}
@@ -90,13 +95,10 @@ function PrivateProfile() {
   );
 }
 
-function EmptyTab() {
+function EmptyPosts() {
   return (
     <div className='flex min-h-72 flex-col items-center justify-center px-4 text-center'>
-      <span className='flex size-16 items-center justify-center rounded-full border-2 border-white'>
-        <Bookmark size={30} />
-      </span>
-      <h2 className='mt-4 text-2xl font-bold'>No saved posts yet</h2>
+      <h2 className='text-2xl font-bold'>No posts yet</h2>
     </div>
   );
 }

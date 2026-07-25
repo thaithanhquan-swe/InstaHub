@@ -1,7 +1,17 @@
 'use client';
 
 import CarouselButton from '@/components/CarouselButton/CarouselButton';
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import stories from '@/data/stories';
+import type { Story } from '@/data/stories';
+import { markHighlightDeleted } from '@/lib/highlightStorage';
 import { X } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -16,25 +26,38 @@ const PREVIEW_STORY_COUNT = 2;
 
 interface StoriesClientProps {
   storyId: number;
+  storyList?: Story[];
+  closeHref?: string;
+  storyPathPrefix?: string;
+  showStoryActions?: boolean;
+  allowHighlightDeletion?: boolean;
 }
 
-function StoriesClient({ storyId }: StoriesClientProps) {
+function StoriesClient({
+  storyId,
+  storyList = stories,
+  closeHref = '/',
+  storyPathPrefix = '/stories',
+  showStoryActions = true,
+  allowHighlightDeletion = false,
+}: StoriesClientProps) {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(() =>
-    stories.findIndex((story) => story.id === storyId),
+    storyList.findIndex((story) => story.id === storyId),
   );
-  const activeStory = stories[activeIndex];
+  const activeStory = storyList[activeIndex];
 
   const [mediaIndex, setMediaIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [likedMediaKeys, setLikedMediaKeys] = useState<string[]>([]);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const lastViewedMediaByStory = useRef<Record<number, number>>({});
 
   const currentMedia = activeStory?.media[mediaIndex];
 
   const isFirstStory = activeIndex === 0;
-  const isLastStory = activeIndex === stories.length - 1;
+  const isLastStory = activeIndex === storyList.length - 1;
   const isFirstMedia = mediaIndex === 0;
   const isLastMedia = mediaIndex >= (activeStory?.media.length ?? 1) - 1;
   const currentMediaKey =
@@ -62,7 +85,7 @@ function StoriesClient({ storyId }: StoriesClientProps) {
 
   const goToStory = useCallback(
     (index: number, targetMediaIndex?: number) => {
-      const targetStory = stories[index];
+      const targetStory = storyList[index];
 
       if (!targetStory || targetStory.media.length === 0) {
         return;
@@ -83,9 +106,13 @@ function StoriesClient({ storyId }: StoriesClientProps) {
 
       setActiveIndex(index);
       resetPlayback(safeMediaIndex);
-      window.history.replaceState(null, '', `/stories/${targetStory.id}`);
+      window.history.replaceState(
+        null,
+        '',
+        `${storyPathPrefix}/${targetStory.id}`,
+      );
     },
-    [activeStory, mediaIndex, resetPlayback],
+    [activeStory, mediaIndex, resetPlayback, storyList, storyPathPrefix],
   );
 
   const handleNext = useCallback(() => {
@@ -97,7 +124,7 @@ function StoriesClient({ storyId }: StoriesClientProps) {
     }
 
     if (isLastStory) {
-      router.push('/');
+      router.push(closeHref);
       return;
     }
 
@@ -110,6 +137,7 @@ function StoriesClient({ storyId }: StoriesClientProps) {
     isLastMedia,
     isLastStory,
     mediaIndex,
+    closeHref,
     router,
   ]);
 
@@ -124,7 +152,7 @@ function StoriesClient({ storyId }: StoriesClientProps) {
     if (isFirstStory) return;
 
     const previousStoryIndex = activeIndex - 1;
-    const previousStory = stories[previousStoryIndex];
+    const previousStory = storyList[previousStoryIndex];
 
     if (!previousStory || previousStory.media.length === 0) {
       return;
@@ -144,11 +172,12 @@ function StoriesClient({ storyId }: StoriesClientProps) {
     isFirstMedia,
     isFirstStory,
     mediaIndex,
+    storyList,
   ]);
 
   const handleSelectPreviousStory = useCallback(
     (index: number) => {
-      const targetStory = stories[index];
+      const targetStory = storyList[index];
 
       if (!targetStory) return;
 
@@ -159,7 +188,7 @@ function StoriesClient({ storyId }: StoriesClientProps) {
 
       goToStory(index, targetMediaIndex);
     },
-    [goToStory],
+    [goToStory, storyList],
   );
 
   const handleSelectNextStory = useCallback(
@@ -175,6 +204,16 @@ function StoriesClient({ storyId }: StoriesClientProps) {
         ? currentKeys.filter((key) => key !== currentMediaKey)
         : [...currentKeys, currentMediaKey],
     );
+  };
+
+  const handleDeleteHighlight = () => {
+    if (!allowHighlightDeletion || !activeStory) {
+      return;
+    }
+
+    markHighlightDeleted(activeStory.id);
+    setDeleteDialogOpen(false);
+    router.replace(closeHref);
   };
 
   useEffect(() => {
@@ -210,14 +249,14 @@ function StoriesClient({ storyId }: StoriesClientProps) {
 
   const previousStartIndex = Math.max(0, activeIndex - PREVIEW_STORY_COUNT);
 
-  const previousStories = stories
+  const previousStories = storyList
     .slice(previousStartIndex, activeIndex)
     .map((story, index) => ({
       story,
       index: previousStartIndex + index,
     }));
 
-  const nextStories = stories
+  const nextStories = storyList
     .slice(activeIndex + 1, activeIndex + PREVIEW_STORY_COUNT + 1)
     .map((story, index) => ({
       story,
@@ -231,65 +270,99 @@ function StoriesClient({ storyId }: StoriesClientProps) {
   }
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#1a1a1a] text-white">
-      <Link
-        href="/"
-        className="fixed top-4 left-5 z-50 hidden font-serif text-2xl font-semibold italic lg:block"
-      >
-        InstaHub
-      </Link>
+    <>
+      <main className="relative min-h-screen overflow-hidden bg-[#1a1a1a] text-white">
+        <Link
+          href={closeHref}
+          className="fixed top-4 left-5 z-50 hidden font-serif text-2xl font-semibold italic lg:block"
+        >
+          InstaHub
+        </Link>
 
-      <Link
-        href="/"
-        aria-label="Close stories"
-        className="fixed top-4 right-5 z-50 flex size-11 items-center justify-center transition-transform hover:scale-110"
-      >
-        <X size={34} strokeWidth={1.8} />
-      </Link>
+        <Link
+          href={closeHref}
+          aria-label="Close stories"
+          className="fixed top-4 right-5 z-50 flex size-11 items-center justify-center transition-transform hover:scale-110"
+        >
+          <X size={34} strokeWidth={1.8} />
+        </Link>
 
-      <section className="flex min-h-screen items-center justify-center gap-7 px-4 py-3">
-        <StoryPreviewList
-          stories={previousStories}
-          side="left"
-          onSelectStory={handleSelectPreviousStory}
-        />
-
-        <div className="relative size-6 shrink-0">
-          <CarouselButton
-            direction="left"
-            disabled={disablePrevious}
-            onClick={handlePrevious}
-            className="static translate-y-0"
+        <section className="flex min-h-screen items-center justify-center gap-7 px-4 py-3">
+          <StoryPreviewList
+            stories={previousStories}
+            side="left"
+            onSelectStory={handleSelectPreviousStory}
           />
-        </div>
 
-        <StoryViewer
-          story={activeStory}
-          mediaIndex={mediaIndex}
-          progress={progress}
-          isPlaying={isPlaying}
-          isLiked={isLiked}
-          onPrevious={handlePrevious}
-          onNext={handleNext}
-          onTogglePlaying={() => setIsPlaying((isPlaying) => !isPlaying)}
-          onToggleLike={handleToggleLike}
-        />
+          <div className="relative size-6 shrink-0">
+            <CarouselButton
+              direction="left"
+              disabled={disablePrevious}
+              onClick={handlePrevious}
+              className="static translate-y-0"
+            />
+          </div>
 
-        <div className="relative size-6 shrink-0">
-          <CarouselButton
-            direction="right"
-            onClick={handleNext}
-            className="static translate-y-0"
+          <StoryViewer
+            story={activeStory}
+            mediaIndex={mediaIndex}
+            progress={progress}
+            isPlaying={isPlaying}
+            isLiked={isLiked}
+            onPrevious={handlePrevious}
+            onNext={handleNext}
+            onTogglePlaying={() => setIsPlaying((isPlaying) => !isPlaying)}
+            onToggleLike={handleToggleLike}
+            showActions={showStoryActions}
+            onDelete={
+              allowHighlightDeletion
+                ? () => setDeleteDialogOpen(true)
+                : undefined
+            }
           />
-        </div>
 
-        <StoryPreviewList
-          stories={nextStories}
-          side="right"
-          onSelectStory={handleSelectNextStory}
-        />
-      </section>
-    </main>
+          <div className="relative size-6 shrink-0">
+            <CarouselButton
+              direction="right"
+              onClick={handleNext}
+              className="static translate-y-0"
+            />
+          </div>
+
+          <StoryPreviewList
+            stories={nextStories}
+            side="right"
+            onSelectStory={handleSelectNextStory}
+          />
+        </section>
+      </main>
+
+      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogContent className="border border-white/10 bg-[#262626] text-white sm:max-w-sm">
+          <DialogTitle>Delete highlight?</DialogTitle>
+          <DialogDescription className="text-[#a8a8a8]">
+            This removes the highlight from your profile. The original stories
+            will remain in your archive.
+          </DialogDescription>
+          <DialogFooter className="border-white/10 bg-transparent">
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => setDeleteDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              variant="destructive"
+              onClick={handleDeleteHighlight}
+            >
+              Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
 

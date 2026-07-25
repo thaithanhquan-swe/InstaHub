@@ -8,11 +8,11 @@ import { formatCount } from '@/lib/formatCount';
 import { Post } from '@/types/post.types';
 import PostCommentsDialog from '@/components/PostCommentsDialog/PostCommentsDialog';
 
-interface ExploreItemProps {
+interface PostGridItemProps {
   post: Post;
 }
 
-function ExploreItem({ post }: ExploreItemProps) {
+function PostGridItem({ post }: PostGridItemProps) {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const firstMedia = post.media[0];
@@ -80,4 +80,4 @@ function ExploreItem({ post }: ExploreItemProps) {
   );
 }
 
-export default ExploreItem;
+export default PostGridItem;

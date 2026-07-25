@@ -18,6 +18,8 @@ interface StoryViewerProps {
   onNext: () => void;
   onTogglePlaying: () => void;
   onToggleLike: () => void;
+  showActions?: boolean;
+  onDelete?: () => void;
 }
 
 function StoryViewer({
@@ -30,6 +32,8 @@ function StoryViewer({
   onNext,
   onTogglePlaying,
   onToggleLike,
+  showActions = true,
+  onDelete,
 }: StoryViewerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const lastAudibleVolumeRef = useRef(1);
@@ -80,7 +84,10 @@ function StoryViewer({
 
   return (
     <article className="relative h-svh w-full overflow-hidden bg-black sm:h-[min(94vh,900px)] sm:w-[min(52.9vh,475px)] sm:rounded-lg">
-      <div key={`${story.id}-${currentMedia.id}`} className="absolute inset-0">
+      <div
+        key={`${story.id}-${mediaIndex}-${currentMedia.id}`}
+        className="absolute inset-0"
+      >
         {currentMedia.type === 'image' ? (
           <Image
             src={currentMedia.url}
@@ -120,6 +127,7 @@ function StoryViewer({
         onTogglePlaying={onTogglePlaying}
         onToggleMuted={handleToggleMuted}
         onVolumeChange={handleVolumeChange}
+        onDelete={onDelete}
       />
 
       <button
@@ -136,11 +144,13 @@ function StoryViewer({
         className="absolute top-20 right-0 bottom-24 z-10 w-[35%] cursor-default"
       />
 
-      <StoryActions
-        username={story.username}
-        isLiked={isLiked}
-        onToggleLike={onToggleLike}
-      />
+      {showActions && (
+        <StoryActions
+          username={story.username}
+          isLiked={isLiked}
+          onToggleLike={onToggleLike}
+        />
+      )}
     </article>
   );
 }

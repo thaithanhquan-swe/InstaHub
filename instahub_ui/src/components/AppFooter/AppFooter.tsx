@@ -18,11 +18,11 @@ const footerLinks = [
   'Meta Verified'
 ];
 
-export default function SettingsFooter() {
+export default function AppFooter() {
   return (
     <footer className='mx-auto w-full max-w-5xl px-4 pt-12 pb-8 text-center text-xs text-[#a8a8a8]'>
       <nav
-        aria-label='Settings footer'
+        aria-label='Footer navigation'
         className='flex flex-wrap justify-center gap-x-5 gap-y-3'
       >
         {footerLinks.map((link) => (

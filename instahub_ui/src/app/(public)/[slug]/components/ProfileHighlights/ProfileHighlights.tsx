@@ -1,10 +1,15 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Plus } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { ProfileHighlight, UserProfile } from '@/data/profiles';
+import {
+  getDeletedHighlightIds,
+  HIGHLIGHT_DELETED_EVENT,
+} from '@/lib/highlightStorage';
 
 import CreateHighlightDialog from './components/CreateHighlightDialog';
 
@@ -15,6 +20,33 @@ interface ProfileHighlightsProps {
 export default function ProfileHighlights({ profile }: ProfileHighlightsProps) {
   const [highlights, setHighlights] = useState(profile.highlights);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
+
+  useEffect(() => {
+    const removeDeletedHighlights = () => {
+      const deletedIds = getDeletedHighlightIds();
+
+      setHighlights((currentHighlights) =>
+        currentHighlights.filter(
+          (highlight) => !deletedIds.includes(highlight.id),
+        ),
+      );
+    };
+
+    removeDeletedHighlights();
+    window.addEventListener('storage', removeDeletedHighlights);
+    window.addEventListener(
+      HIGHLIGHT_DELETED_EVENT,
+      removeDeletedHighlights,
+    );
+
+    return () => {
+      window.removeEventListener('storage', removeDeletedHighlights);
+      window.removeEventListener(
+        HIGHLIGHT_DELETED_EVENT,
+        removeDeletedHighlights,
+      );
+    };
+  }, []);
 
   if (
     profile.isPrivate ||
@@ -45,9 +77,10 @@ export default function ProfileHighlights({ profile }: ProfileHighlightsProps) {
         )}
 
         {highlights.map((highlight) => (
-          <button
-            type='button'
+          <Link
+            href={`/stories/highlights/${highlight.id}`}
             key={highlight.id}
+            aria-label={`View ${highlight.title} highlight`}
             className='w-18 shrink-0 cursor-pointer text-center sm:w-20'
           >
             <span className='mx-auto block rounded-full border border-[#737373] p-0.75'>
@@ -64,7 +97,7 @@ export default function ProfileHighlights({ profile }: ProfileHighlightsProps) {
             <span className='mt-2 block truncate text-xs font-semibold'>
               {highlight.title}
             </span>
-          </button>
+          </Link>
         ))}
       </section>
 

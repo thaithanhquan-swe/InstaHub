@@ -104,7 +104,7 @@ function ProfileActions({
         </Link>
 
         <Link
-          href='/settings'
+          href='/archive'
           aria-label='View archive'
           className='min-w-81.25 rounded-lg bg-[#363636] px-6 py-3.25 text-center text-sm font-semibold transition-colors hover:bg-[#454545]'
         >

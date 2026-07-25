@@ -26,7 +26,7 @@ function StoryProgress({
 
         return (
           <div
-            key={item.id}
+            key={`${item.id}-${index}`}
             className="h-0.5 flex-1 overflow-hidden rounded-full bg-white/35"
           >
             <div className="h-full rounded-full bg-white" style={{ width }} />

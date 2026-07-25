@@ -1,6 +1,19 @@
-import { BadgeCheck, Pause, Play, Volume2, VolumeX } from 'lucide-react';
+import {
+  BadgeCheck,
+  MoreHorizontal,
+  Pause,
+  Play,
+  Volume2,
+  VolumeX,
+} from 'lucide-react';
 import Image from 'next/image';
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import type { Story } from '@/data/stories';
 
 interface StoryHeaderProps {
@@ -11,6 +24,7 @@ interface StoryHeaderProps {
   onTogglePlaying: () => void;
   onToggleMuted: () => void;
   onVolumeChange: (volume: number) => void;
+  onDelete?: () => void;
 }
 
 function StoryHeader({
@@ -21,6 +35,7 @@ function StoryHeader({
   onTogglePlaying,
   onToggleMuted,
   onVolumeChange,
+  onDelete,
 }: StoryHeaderProps) {
   return (
     <header className="absolute top-8 right-4 left-4 z-20 flex items-center justify-between">
@@ -85,6 +100,42 @@ function StoryHeader({
             <Play size={20} fill="currentColor" />
           )}
         </button>
+        {onDelete ? (
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              render={
+                <button
+                  type="button"
+                  aria-label="More highlight options"
+                  className="cursor-pointer transition-transform hover:scale-110"
+                />
+              }
+            >
+              <MoreHorizontal size={23} strokeWidth={2.3} />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              sideOffset={8}
+              className="w-44 border border-white/10 bg-[#262626] p-1.5 text-white"
+            >
+              <DropdownMenuItem
+                variant="destructive"
+                onClick={onDelete}
+                className="cursor-pointer px-3 py-2.5 text-sm font-semibold"
+              >
+                Delete highlight
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          <button
+            type="button"
+            aria-label="More story options"
+            className="cursor-pointer transition-transform hover:scale-110"
+          >
+            <MoreHorizontal size={23} strokeWidth={2.3} />
+          </button>
+        )}
       </div>
     </header>
   );

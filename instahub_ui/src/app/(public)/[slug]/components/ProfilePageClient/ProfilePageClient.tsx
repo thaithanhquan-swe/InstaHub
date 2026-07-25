@@ -1,3 +1,4 @@
+import AppFooter from '@/components/AppFooter/AppFooter';
 import type { UserProfile } from '@/data/profiles';
 
 import ProfileContent from '../ProfileContent/ProfileContent';
@@ -16,6 +17,7 @@ export default function ProfilePageClient({ profile }: ProfilePageClientProps) {
         <ProfileHighlights profile={profile} />
       </div>
       <ProfileContent profile={profile} />
+      <AppFooter />
     </main>
   );
 }

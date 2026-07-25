@@ -3,6 +3,7 @@ import type { StaticImageData } from 'next/image';
 import explorePosts from '@/data/explore';
 import { searchUsers } from '@/data/search-users.data';
 import { profileData } from '@/data/settings';
+import stories, { type Story } from '@/data/stories';
 import { suggestedUsers } from '@/data/suggestion.data';
 import { createProfileSlug } from '@/lib/createProfileSlug';
 import type { Post } from '@/types/post.types';
@@ -13,6 +14,7 @@ export interface ProfileHighlight {
   id: number;
   title: string;
   image: ImageSource;
+  storyIds?: number[];
 }
 
 export interface UserProfile {
@@ -33,6 +35,7 @@ export interface UserProfile {
   };
   highlights: ProfileHighlight[];
   posts: Post[];
+  savedPosts?: Post[];
 }
 
 export const CURRENT_USER_USERNAME = profileData.username;
@@ -83,12 +86,114 @@ function makePosts(
 
 function getHighlights(username: string): ProfileHighlight[] {
   const start = getHash(username) % galleryImages.length;
+  const storyStart = getHash(username) % stories.length;
 
   return highlightTitles.map((title, index) => ({
-    id: index + 1,
+    id: getHash(username) * 10 + index + 1,
     title,
     image: galleryImages[(start + index) % galleryImages.length],
+    storyIds: Array.from(
+      { length: 3 },
+      (_, storyIndex) =>
+        stories[(storyStart + index * 3 + storyIndex) % stories.length].id,
+    ),
   }));
+}
+
+export function getProfileHighlightStories(
+  highlightId: number,
+): { highlightStories: Story[]; ownerSlug: string } | undefined {
+  const highlightIndex = (highlightId % 10) - 1;
+
+  if (highlightIndex < 0 || highlightIndex >= highlightTitles.length) {
+    return undefined;
+  }
+
+  const ownerHash = Math.floor(highlightId / 10);
+  const suggestedOwner = suggestedUsers.find(
+    (user) => getHash(user.username) === ownerHash,
+  );
+  const searchOwner = searchUsers.find(
+    (user) => getHash(user.username) === ownerHash,
+  );
+  const exploreOwner = explorePosts.find(
+    (post) => getHash(post.author.username) === ownerHash,
+  )?.author;
+
+  const owner =
+    getHash(CURRENT_USER_USERNAME) === ownerHash
+      ? {
+          username: CURRENT_USER_USERNAME,
+          avatar: profileData.image,
+          verified: false,
+          slug: CURRENT_USER_SLUG,
+        }
+      : suggestedOwner
+        ? {
+            username: suggestedOwner.username,
+            avatar: suggestedOwner.avatar,
+            verified: Boolean(suggestedOwner.verified),
+            slug: suggestedOwner.slug,
+          }
+        : searchOwner
+          ? {
+              username: searchOwner.username,
+              avatar: searchOwner.avatar,
+              verified: Boolean(searchOwner.verified),
+              slug: searchOwner.slug,
+            }
+          : exploreOwner
+            ? {
+                username: exploreOwner.username,
+                avatar: exploreOwner.avatar,
+                verified: Boolean(exploreOwner.verified),
+                slug: createProfileSlug(exploreOwner.username),
+              }
+            : undefined;
+
+  if (!owner) {
+    return undefined;
+  }
+
+  const highlightStories = getHighlights(owner.username)
+    .map((highlight, highlightPosition): Story | undefined => {
+      const media = (highlight.storyIds ?? [])
+        .flatMap(
+          (storyId) =>
+            stories.find((story) => story.id === storyId)?.media ?? [],
+        )
+        .map((item, mediaIndex) => ({
+          ...item,
+          id: mediaIndex + 1,
+        }));
+
+      if (media.length === 0) {
+        return undefined;
+      }
+
+      return {
+        id: highlight.id,
+        username: owner.username,
+        avatar: owner.avatar,
+        verified: owner.verified,
+        seen: true,
+        time: `${highlightPosition + 1}w`,
+        media,
+      };
+    })
+    .filter((story): story is Story => Boolean(story));
+
+  if (
+    highlightStories.length === 0 ||
+    !highlightStories.some((story) => story.id === highlightId)
+  ) {
+    return undefined;
+  }
+
+  return {
+    ownerSlug: owner.slug,
+    highlightStories,
+  };
 }
 
 function findAuthoredPosts(username: string) {
@@ -139,6 +244,9 @@ function createCurrentUserProfile(): UserProfile {
     },
     highlights: getHighlights(CURRENT_USER_USERNAME),
     posts,
+    savedPosts: explorePosts.filter((post) =>
+      [1, 2, 4, 6, 8, 9, 10, 11].includes(post.id),
+    ),
   };
 }
 

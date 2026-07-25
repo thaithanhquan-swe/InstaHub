@@ -1,8 +1,9 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import AppFooter from '@/components/AppFooter/AppFooter';
+
 import { settingsGroups } from '../../../../../data/settings';
-import SettingsFooter from '../SettingsFooter/SettingsFooter';
 import SettingsPanel from '../SettingsPanel/SettingsPanel';
 import SettingsSidebar from '../SettingsSidebar/SettingsSidebar';
 
@@ -39,7 +40,7 @@ export default function SettingsClient() {
           <div className='flex-1'>
             <SettingsPanel activeSection={activeSection} />
           </div>
-          <SettingsFooter />
+          <AppFooter />
         </div>
       </main>
     </div>
