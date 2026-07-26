@@ -4,6 +4,11 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# OR, if you only want to exclude specific ones:
+application.properties
+# Firebase secret
+src/main/resources/**
+
 ### STS ###
 .apt_generated
 .classpath
