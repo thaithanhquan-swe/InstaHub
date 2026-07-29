@@ -1,34 +1,34 @@
 package com.example.instahub_api.controller;
 
 import com.example.instahub_api.dto.ApiResponse;
-import com.example.instahub_api.dto.request.*;
+import com.example.instahub_api.dto.request.AuthenticationRequest;
+import com.example.instahub_api.dto.request.ForgotPasswordRequest;
+import com.example.instahub_api.dto.request.IntrospectRequest;
+import com.example.instahub_api.dto.request.LogoutRequest;
+import com.example.instahub_api.dto.request.RefreshRequest;
+import com.example.instahub_api.dto.request.ResetPasswordRequest;
+import com.example.instahub_api.dto.request.UserRegisterRequest;
 import com.example.instahub_api.dto.response.AuthenticationResponse;
 import com.example.instahub_api.dto.response.IntrospectResponse;
 import com.example.instahub_api.dto.response.UserResponse;
 import com.example.instahub_api.service.AuthenticationService;
 import com.nimbusds.jose.JOSEException;
-import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@Slf4j
 public class AuthenticationController {
-
     AuthenticationService authService;
 
     @PostMapping("/register")
@@ -46,9 +46,11 @@ public class AuthenticationController {
     }
 
     @PostMapping("/refresh_token")
-    ApiResponse<AuthenticationResponse> refreshtoken(@RequestBody RefreshRequest request) throws ParseException, JOSEException {
-        var result = authService.refreshToken(request);
-        return ApiResponse.<AuthenticationResponse>builder().result(result).build();
+    ApiResponse<AuthenticationResponse> refreshToken(@RequestBody RefreshRequest request)
+            throws ParseException, JOSEException {
+        return ApiResponse.<AuthenticationResponse>builder()
+                .result(authService.refreshToken(request))
+                .build();
     }
 
     @PostMapping("/logout")
@@ -57,27 +59,27 @@ public class AuthenticationController {
         return ApiResponse.<Void>builder().message("Log out successfully").build();
     }
 
-
     @PostMapping("/introspect")
     ApiResponse<IntrospectResponse> introspect(@RequestBody IntrospectRequest request)
             throws ParseException, JOSEException {
-        var result = authService.introspect(request);
-        return ApiResponse.<IntrospectResponse>builder().result(result).build();
+        return ApiResponse.<IntrospectResponse>builder()
+                .result(authService.introspect(request))
+                .build();
     }
 
-//    @PostMapping("/forgot-password")
-//    public ApiResponse<Void> forgotPassword(@RequestBody ForgotPasswordRequest request) throws MessagingException, UnsupportedEncodingException {
-//        authService.forgotPassword(request.getEmail());
-//        return ApiResponse.<Void>builder()
-//                .message("Email đã được gửi!")
-//                .build();
-//    }
+    @PostMapping("/forgot-password")
+    ApiResponse<Void> forgotPassword(@RequestBody @Valid ForgotPasswordRequest request) {
+        authService.forgotPassword(request.getEmail());
+        return ApiResponse.<Void>builder()
+                .message("Password reset email sent successfully.")
+                .build();
+    }
 
-//    @PostMapping("/reset-password")
-//    public ApiResponse<Void> resetPassword(@RequestBody ResetPasswordRequest request) {
-//        authService.resetPassword(request.getToken(), request.getNewPassword());
-//        return ApiResponse.<Void>builder()
-//                .message("Đặt lại mật khẩu thành công!")
-//                .build();
-//    }
+    @PostMapping("/reset-password")
+    ApiResponse<Void> resetPassword(@RequestBody @Valid ResetPasswordRequest request) {
+        authService.resetPassword(request.getToken(), request.getNewPassword());
+        return ApiResponse.<Void>builder()
+                .message("Password reset successful.")
+                .build();
+    }
 }

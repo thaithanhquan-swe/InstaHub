@@ -5,12 +5,15 @@ import com.example.instahub_api.dto.response.AuthenticationResponse;
 import com.example.instahub_api.dto.response.IntrospectResponse;
 import com.example.instahub_api.dto.response.UserResponse;
 import com.example.instahub_api.entity.InvalidatedToken;
+import com.example.instahub_api.entity.PasswordResetToken;
 import com.example.instahub_api.entity.Role;
 import com.example.instahub_api.entity.User;
 import com.example.instahub_api.exception.AppException;
 import com.example.instahub_api.exception.ErrorCode;
+import com.example.instahub_api.mail.MailService;
 import com.example.instahub_api.mapper.UserMapper;
 import com.example.instahub_api.repository.InvalidatedTokenRepository;
+import com.example.instahub_api.repository.PasswordResetTokenRepository;
 import com.example.instahub_api.repository.RoleRepository;
 import com.example.instahub_api.repository.UserRepository;
 import com.nimbusds.jose.*;
@@ -27,11 +30,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.text.ParseException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.StringJoiner;
@@ -47,6 +56,8 @@ public class AuthenticationService {
     RoleRepository roleRepository;
     PasswordEncoder passwordEncoder;
     UserMapper userMapper;
+    PasswordResetTokenRepository passwordResetTokenRepository;
+    MailService mailService;
 
     @NonFinal
     @Value("${jwt.signerKey}")
@@ -60,8 +71,15 @@ public class AuthenticationService {
     @Value("${jwt.refreshable-duration}")
     protected long REFRESH_DURATION;
 
+    @NonFinal
+    @Value("${app.password-reset.expiration-minutes:15}")
+    protected long PASSWORD_RESET_EXPIRATION_MINUTES;
+
+    private static final SecureRandom SECURE_RANDOM = new SecureRandom();
+
     public UserResponse register(UserRegisterRequest request) {
         User user = userMapper.toUser(request);
+        user.setEmail(request.getEmail().trim().toLowerCase());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 
         HashSet<Role> roles = new HashSet<>();
@@ -150,6 +168,57 @@ public class AuthenticationService {
         var token = generateToken(user);
 
         return AuthenticationResponse.builder().token(token).authenticated(true).build();
+    }
+
+    @Transactional
+    public void forgotPassword(String email) {
+        userRepository.findByEmailIgnoreCase(email.trim()).ifPresent(user -> {
+            passwordResetTokenRepository.deleteAllByUser(user);
+
+            String rawToken = generateResetToken();
+            PasswordResetToken resetToken = PasswordResetToken.builder()
+                    .tokenHash(hashResetToken(rawToken))
+                    .user(user)
+                    .expiresAt(Instant.now().plus(PASSWORD_RESET_EXPIRATION_MINUTES, ChronoUnit.MINUTES))
+                    .build();
+            passwordResetTokenRepository.save(resetToken);
+
+            mailService.sendResetPasswordEmail(user.getEmail(), user.getUsername(), rawToken);
+        });
+    }
+
+    @Transactional
+    public void resetPassword(String rawToken, String newPassword) {
+        PasswordResetToken resetToken = passwordResetTokenRepository
+                .findByTokenHashForUpdate(hashResetToken(rawToken))
+                .orElseThrow(() -> new AppException(ErrorCode.INVALID_RESET_TOKEN));
+
+        if (!resetToken.getExpiresAt().isAfter(Instant.now())) {
+            throw new AppException(ErrorCode.INVALID_RESET_TOKEN);
+        }
+
+        User user = resetToken.getUser();
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+
+        // Xóa toàn bộ token reset của tài khoản để link chỉ dùng được một lần.
+        passwordResetTokenRepository.deleteAllByUser(user);
+    }
+
+    private String generateResetToken() {
+        byte[] bytes = new byte[32];
+        SECURE_RANDOM.nextBytes(bytes);
+        return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
+    }
+
+    private String hashResetToken(String token) {
+        try {
+            byte[] digest = MessageDigest.getInstance("SHA-256")
+                    .digest(token.getBytes(StandardCharsets.UTF_8));
+            return java.util.HexFormat.of().formatHex(digest);
+        } catch (NoSuchAlgorithmException exception) {
+            throw new IllegalStateException("SHA-256 is not available", exception);
+        }
     }
 
     private SignedJWT verifyToken(String token, boolean isRefresh) throws JOSEException, ParseException {

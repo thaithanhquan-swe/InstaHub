@@ -1,6 +1,7 @@
 package com.example.instahub_api.dto.request;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -17,6 +18,7 @@ public class UserRegisterRequest {
     @Size(min = 5, message = "USERNAME_INVALID")
     String username;
 
+    @NotBlank(message = "EMAIL_INVALID")
     @Email(message = "EMAIL_INVALID")
     String email;
 
